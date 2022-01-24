@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title></title>
+<meta charset="utf-8">
+</head>
+<body>
+
+	<th:block th:fragment= "header">
+	
+		<div class="backdrop"></div>
+		<a class="backtop fas fa-arrow-up" href="#"></a>
+		<div class="header-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-lg-5">
+						<div class="header-top-welcome">
+							<p>Chào mừng bạn đến với cửa hàng thực phẩm !</p>
+						</div>
+					</div>
+					<div class="col-md-5 col-lg-3">
+						<div class="header-top-select">
+							<div class="header-select">
+								<i class="icofont-world"></i><select class="select">
+									<option value="vietnam" selected>Việt Nam</option>
+								</select>
+							</div>
+							<div class="header-select">
+								<i class="icofont-money"></i><select class="select">
+									<option value="vnd" selected>vnđ</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<header class="header-part">
+			<div class="container">
+				<div class="header-content">
+					<div class="header-media-group">
+						<button class="header-user">
+							<img src="images/user.png" alt="user" />
+						</button>
+						<a href="/trang-chu"> <img src="images/logo.png" alt="logo" />
+						</a>
+						<button class="header-src">
+							<i class="fas fa-search"></i>
+						</button>
+					</div>
+					<a href="/trang-chu" class="header-logo"> <img
+						src="images/logo.png" alt="logo" />
+					</a> <a href="login.html" class="header-widget" title="My Account">
+						<img src="images/user.png" alt="user" /> <span>Đồng Pro</span>
+					</a>
+					<form class="header-form">
+						<input type="text" placeholder="Tìm kiếm..." />
+						<button>
+							<i class="fas fa-search"></i>
+						</button>
+					</form>
+					<div class="header-widget-group">
+						<a href="/profile" class="header-widget" title="Trang cá nhân">
+							<i class="fas fa-user"></i>
+						</a> <a href="/yeu-thich" class="header-widget" title="Yêu thích">
+							<i class="fas fa-heart"></i><sup>0</sup>
+						</a>
+						<button class="header-widget header-cart" title="Giỏ hàng">
+							<i class="fas fa-shopping-basket"></i> <sup>9+</sup> <span>total
+								price<small>$345.00</small>
+							</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</header>
+		<nav class="navbar-part">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="navbar-content">
+							<ul class="navbar-list">
+								<li class="navbar-item dropdown"><a
+									class="navbar-link dropdown-arrow" href="#">Trang chủ</a>
+									<ul class="dropdown-position-list">
+										<li><a href="/trang-chu">Trang chủ</a></li>
+									</ul></li>
+								<li class="navbar-item dropdown"><a
+									class="navbar-link dropdown-arrow" href="#">Giới thiệu</a>
+									<ul class="dropdown-position-list">
+										<li><a href="/gioi-thieu">Giới thiệu</a></li>
+									</ul></li>
+								<li class="navbar-item dropdown"><a
+									class="navbar-link dropdown-arrow" href="#">Sản phẩm</a>
+									<ul class="dropdown-position-list">
+										<li><a href="/san-pham">Tất cả sản phẩm</a></li>
+									</ul></li>
+								<li class="navbar-item dropdown"><a
+									class="navbar-link dropdown-arrow" href="#">Thể loại</a>
+									<ul class="dropdown-position-list">
+										<li><a href="shop-4column.html">Thể loại</a></li>
+									</ul></li>
+								<li class="navbar-item dropdown"><a
+									class="navbar-link dropdown-arrow" href="#">Liên hệ</a>
+									<ul class="dropdown-position-list">
+										<li><a href="faq.html">faqs</a></li>
+										<li><a href="offer.html">offers</a></li>
+										<li><a href="profile.html">my profile</a></li>
+										<li><a href="wallet.html">my wallet</a></li>
+										<li><a href="about.html">about us</a></li>
+										<li><a href="/lien-he">contact us</a></li>
+										<li><a href="privacy.html">privacy policy</a></li>
+										<li><a href="coming-soon.html">coming soon</a></li>
+										<li><a href="blank-page.html">blank page</a></li>
+										<li><a href="error.html">404 Error</a></li>
+										<li><a href="email-template.html">email template</a></li>
+									</ul></li>
+								<li class="navbar-item dropdown"><a
+									class="navbar-link dropdown-arrow" href="#">Tài khoản</a>
+									<ul class="dropdown-position-list">
+										<li><a href="/dang-nhap">login</a></li>
+										<li><a href="/dang-ky">register</a></li>
+										<li><a href="reset-password.html">reset password</a></li>
+										<li><a href="change-password.html">change password</a></li>
+									</ul></li>
+							</ul>
+							<div class="navbar-info-group">
+								<div class="navbar-info">
+									<i class="icofont-ui-touch-phone"></i>
+									<p>
+										<small>Số điện thoại</small><span>(+84) 183 8288 389</span>
+									</p>
+								</div>
+								<div class="navbar-info">
+									<i class="icofont-ui-email"></i>
+									<p>
+										<small>email</small><span>support@greeny.com</span>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+	
+	<!-- slide giỏ hàng -->
+		<aside class="cart-sidebar">
+			<div class="cart-header">
+				<div class="cart-total">
+					<i class="fas fa-shopping-basket"></i><span>total item (5)</span>
+				</div>
+				<button class="cart-close">
+					<i class="icofont-close"></i>
+				</button>
+			</div>
+			<ul class="cart-list">
+				<li class="cart-item">
+					<div class="cart-media">
+						<a href="#"><img src="images/product/01.jpg" alt="product" /></a>
+						<button class="cart-delete">
+							<i class="far fa-trash-alt"></i>
+						</button>
+					</div>
+					<div class="cart-info-group">
+						<div class="cart-info">
+							<h6>
+								<a href="product-single.html">existing product name</a>
+							</h6>
+							<p>Unit Price - $8.75</p>
+						</div>
+						<div class="cart-action-group">
+							<div class="product-action">
+								<button class="action-minus" title="Quantity Minus">
+									<i class="icofont-minus"></i>
+								</button>
+								<input class="action-input" title="Quantity Number" type="text"
+									name="quantity" value="1" />
+								<button class="action-plus" title="Quantity Plus">
+									<i class="icofont-plus"></i>
+								</button>
+							</div>
+							<h6>$56.98</h6>
+						</div>
+					</div>
+				</li>
+				<li class="cart-item">
+					<div class="cart-media">
+						<a href="#"><img src="images/product/02.jpg" alt="product" /></a>
+						<button class="cart-delete">
+							<i class="far fa-trash-alt"></i>
+						</button>
+					</div>
+					<div class="cart-info-group">
+						<div class="cart-info">
+							<h6>
+								<a href="product-single.html">existing product name</a>
+							</h6>
+							<p>Unit Price - $8.75</p>
+						</div>
+						<div class="cart-action-group">
+							<div class="product-action">
+								<button class="action-minus" title="Quantity Minus">
+									<i class="icofont-minus"></i>
+								</button>
+								<input class="action-input" title="Quantity Number" type="text"
+									name="quantity" value="1" />
+								<button class="action-plus" title="Quantity Plus">
+									<i class="icofont-plus"></i>
+								</button>
+							</div>
+							<h6>$56.98</h6>
+						</div>
+					</div>
+				</li>
+				<li class="cart-item">
+					<div class="cart-media">
+						<a href="#"><img src="images/product/03.jpg" alt="product" /></a>
+						<button class="cart-delete">
+							<i class="far fa-trash-alt"></i>
+						</button>
+					</div>
+					<div class="cart-info-group">
+						<div class="cart-info">
+							<h6>
+								<a href="product-single.html">existing product name</a>
+							</h6>
+							<p>Unit Price - $8.75</p>
+						</div>
+						<div class="cart-action-group">
+							<div class="product-action">
+								<button class="action-minus" title="Quantity Minus">
+									<i class="icofont-minus"></i>
+								</button>
+								<input class="action-input" title="Quantity Number" type="text"
+									name="quantity" value="1" />
+								<button class="action-plus" title="Quantity Plus">
+									<i class="icofont-plus"></i>
+								</button>
+							</div>
+							<h6>$56.98</h6>
+						</div>
+					</div>
+				</li>
+				<li class="cart-item">
+					<div class="cart-media">
+						<a href="#"><img src="images/product/04.jpg" alt="product" /></a>
+						<button class="cart-delete">
+							<i class="far fa-trash-alt"></i>
+						</button>
+					</div>
+					<div class="cart-info-group">
+						<div class="cart-info">
+							<h6>
+								<a href="product-single.html">existing product name</a>
+							</h6>
+							<p>Unit Price - $8.75</p>
+						</div>
+						<div class="cart-action-group">
+							<div class="product-action">
+								<button class="action-minus" title="Quantity Minus">
+									<i class="icofont-minus"></i>
+								</button>
+								<input class="action-input" title="Quantity Number" type="text"
+									name="quantity" value="1" />
+								<button class="action-plus" title="Quantity Plus">
+									<i class="icofont-plus"></i>
+								</button>
+							</div>
+							<h6>$56.98</h6>
+						</div>
+					</div>
+				</li>
+				<li class="cart-item">
+					<div class="cart-media">
+						<a href="#"><img src="images/product/05.jpg" alt="product" /></a>
+						<button class="cart-delete">
+							<i class="far fa-trash-alt"></i>
+						</button>
+					</div>
+					<div class="cart-info-group">
+						<div class="cart-info">
+							<h6>
+								<a href="product-single.html">existing product name</a>
+							</h6>
+							<p>Unit Price - $8.75</p>
+						</div>
+						<div class="cart-action-group">
+							<div class="product-action">
+								<button class="action-minus" title="Quantity Minus">
+									<i class="icofont-minus"></i>
+								</button>
+								<input class="action-input" title="Quantity Number" type="text"
+									name="quantity" value="1" />
+								<button class="action-plus" title="Quantity Plus">
+									<i class="icofont-plus"></i>
+								</button>
+							</div>
+							<h6>$56.98</h6>
+						</div>
+					</div>
+				</li>
+				<li class="cart-item">
+					<div class="cart-media">
+						<a href="#"><img src="images/product/05.jpg" alt="product" /></a>
+						<button class="cart-delete">
+							<i class="far fa-trash-alt"></i>
+						</button>
+					</div>
+					<div class="cart-info-group">
+						<div class="cart-info">
+							<h6>
+								<a href="product-single.html">existing product name</a>
+							</h6>
+							<p>Unit Price - $8.75</p>
+						</div>
+						<div class="cart-action-group">
+							<div class="product-action">
+								<button class="action-minus" title="Quantity Minus">
+									<i class="icofont-minus"></i>
+								</button>
+								<input class="action-input" title="Quantity Number" type="text"
+									name="quantity" value="1" />
+								<button class="action-plus" title="Quantity Plus">
+									<i class="icofont-plus"></i>
+								</button>
+							</div>
+							<h6>$56.98</h6>
+						</div>
+					</div>
+				</li>
+				<li class="cart-item">
+					<div class="cart-media">
+						<a href="#"><img src="images/product/05.jpg" alt="product" /></a>
+						<button class="cart-delete">
+							<i class="far fa-trash-alt"></i>
+						</button>
+					</div>
+					<div class="cart-info-group">
+						<div class="cart-info">
+							<h6>
+								<a href="product-single.html">existing product name</a>
+							</h6>
+							<label>Đơn giá :</label>
+							<p>Unit Price - $8.75</p>
+						</div>
+						<div class="cart-action-group">
+							<div class="product-action">
+								<label>Số lượng :</label>
+								<input class="action-input" title="Quantity Number" type="text"
+									name="quantity" value="1" />
+							</div>
+							<h6>$56.98</h6>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div class="cart-footer">
+				<a class="cart-checkout-btn" href="/thanh-toan"><span
+					class="checkout-label">Thanh Toán</span><span
+					class="checkout-price">$369.78</span></a>
+			</div>
+		</aside>
+		
+	</th:block>
+</body>
+</html>

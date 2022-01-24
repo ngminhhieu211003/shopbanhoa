@@ -8,12 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
  *
  */
 @Controller
-public class HomeController {
+public class CartController {
 
-	@GetMapping(value = "trang-chu")
-	public String home() {
-
-		return "web/home";
-
+	@GetMapping(value = "/thanh-toan")
+	public String checkOut() {
+		
+		return "web/shoppingCart_checkout";
 	}
 }

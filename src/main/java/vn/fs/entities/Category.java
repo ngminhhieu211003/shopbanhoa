@@ -1,7 +1,12 @@
 package vn.fs.entities;
 
+/**
+ * @author DongTHD
+ *
+ */
 public class Category {
 
 	Long id;
-	String name;
+	String categoryName;
+	String categoryImage;
 }

@@ -8,12 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
  *
  */
 @Controller
-public class HomeController {
+public class ContactController {
 
-	@GetMapping(value = "trang-chu")
-	public String home() {
-
-		return "web/home";
-
+	@GetMapping(value = "/lien-he")
+	public String contact() {
+		
+		return "web/contact";
 	}
 }
