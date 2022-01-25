@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -24,23 +25,26 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "products")
-public class Product implements Serializable {
+@Table(name = "comments")
+public class Comment implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long productId;
-	private String productName;
-	private int quantity;
-	private double price;
-	private int discount;
-	private String productImage;
-	private String description;
-	private Date enteredDate;
-	private Boolean status;
+	private Long id;
+	private Double rating;
+	private String content;
+	private Date rateDate;
 
 	@ManyToOne
-	@JoinColumn(name = "categoryId")
-	private Category category;
+	@JoinColumn(name = "userId")
+	private User user;
+
+	@ManyToOne
+	@JoinColumn(name = "productId")
+	private Product product;
+
+	@OneToOne
+	@JoinColumn(name = "orderDetailId")
+	private OrderDetail orderDetail;
 
 }

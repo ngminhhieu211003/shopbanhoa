@@ -2,6 +2,7 @@ package vn.fs.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -24,23 +26,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "products")
-public class Product implements Serializable {
+@Table(name = "orders")
+public class Order implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long productId;
-	private String productName;
-	private int quantity;
-	private double price;
-	private int discount;
-	private String productImage;
-	private String description;
-	private Date enteredDate;
-	private Boolean status;
-
+	private Long orderId;
+	private Date orderDate;
+	private Double amount;
+	private String address;
+	private String phone;
+	private int status;
+	
+	@OneToMany(mappedBy = "order")
+	private List<OrderDetail> orderDetails;
+	
 	@ManyToOne
-	@JoinColumn(name = "categoryId")
-	private Category category;
-
+	@JoinColumn(name = "userId")
+	private User user;
 }

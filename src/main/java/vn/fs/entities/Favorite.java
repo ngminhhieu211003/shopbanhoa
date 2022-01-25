@@ -1,7 +1,6 @@
 package vn.fs.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,23 +23,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "products")
-public class Product implements Serializable {
+@Table(name = "favorites")
+public class Favorite implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long productId;
-	private String productName;
-	private int quantity;
-	private double price;
-	private int discount;
-	private String productImage;
-	private String description;
-	private Date enteredDate;
-	private Boolean status;
+	private Long favoriteId;
 
-	@ManyToOne
-	@JoinColumn(name = "categoryId")
-	private Category category;
+	@ManyToOne()
+	@JoinColumn(name = "userId")
+	private User user;
 
+	@ManyToOne()
+	@JoinColumn(name = "productId")
+	private Product product;
 }
