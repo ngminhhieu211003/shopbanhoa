@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "orders")
-public class Order implements Serializable{
+public class Order implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,11 +37,12 @@ public class Order implements Serializable{
 	private String address;
 	private String phone;
 	private int status;
-	
+
 	@OneToMany(mappedBy = "order")
 	private List<OrderDetail> orderDetails;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "userId")
-	private Customer customer;
+	private User user;
+
 }

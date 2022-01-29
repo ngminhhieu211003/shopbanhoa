@@ -36,8 +36,8 @@ public class Comment implements Serializable {
 	private Date rateDate;
 
 	@ManyToOne
-	@JoinColumn(name = "customerId")
-	private Customer customer;
+	@JoinColumn(name = "userId")
+	private User user;
 
 	@ManyToOne
 	@JoinColumn(name = "productId")

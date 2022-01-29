@@ -31,10 +31,11 @@ public class Favorite implements Serializable {
 	private Long favoriteId;
 
 	@ManyToOne()
-	@JoinColumn(name = "customerId")
-	private Customer customer;
+	@JoinColumn(name = "userId")
+	private User user;
 
 	@ManyToOne()
 	@JoinColumn(name = "productId")
 	private Product product;
+
 }

@@ -23,7 +23,7 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long userId;
 	private String name;
 	private String email;
 	private String password;
@@ -34,7 +34,8 @@ public class User {
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "users_roles",
-		joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+		joinColumns = @JoinColumn(name = "user_id",
+		referencedColumnName = "userId"),
 		inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
 
 	private Collection<Role> roles;
@@ -43,10 +44,10 @@ public class User {
 		super();
 	}
 
-	public User(Long id, String name, String email, String password, String avatar, Date registerDate, Boolean status,
-			Collection<Role> roles) {
+	public User(Long userId, String name, String email, String password, String avatar, Date registerDate,
+			Boolean status, Collection<Role> roles) {
 		super();
-		this.id = id;
+		this.userId = userId;
 		this.name = name;
 		this.email = email;
 		this.password = password;
@@ -56,12 +57,12 @@ public class User {
 		this.roles = roles;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	public String getName() {
@@ -119,5 +120,5 @@ public class User {
 	public void setRoles(Collection<Role> roles) {
 		this.roles = roles;
 	}
-	
+
 }
