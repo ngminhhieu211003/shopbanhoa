@@ -40,13 +40,6 @@ public class AccountController {
 	@Autowired
 	SendMailService sendMailService;
 
-	@GetMapping(value = "/doi-mat-khau")
-	public String changePassword() {
-
-		return "web/changePassword";
-	}
-	
-
 	@GetMapping(value = "/forgotPassword")
 	public String forgotPassword() {
 
@@ -111,7 +104,7 @@ public class AccountController {
 		user.setStatus(true);
 		user.setPassword(bCryptPasswordEncoder.encode(newPassword));
 		userRepository.save(user);
-		model.addAttribute("message", "Đổi mật khẩu thành công!");
+		model.addAttribute("message", "Đặt lại mật khẩu thành công!");
 		model.addAttribute("email", "");
 		session.removeAttribute("otp");
 		return new ModelAndView("/web/changePassword", model);

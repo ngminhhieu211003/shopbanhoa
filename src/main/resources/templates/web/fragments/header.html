@@ -75,16 +75,16 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 					
 					<div class="header-widget-group">
 						<th:block th:if="${#request.remoteUser}">
-						<a href="/profile" class="header-widget" title="Trang cá nhân">
+						<a th:href="@{/profile}" class="header-widget" title="Trang cá nhân">
 							<i class="fas fa-user"></i>
 						</a>
 						</th:block>
-						<a href="/yeu-thich" class="header-widget" title="Yêu thích">
+						<a th:href="@{/favorite}" class="header-widget" title="Yêu thích">
 							<i class="fas fa-heart"></i><sup>0</sup>
 						</a>
 						<button class="header-widget header-cart" title="Giỏ hàng">
-							<i class="fas fa-shopping-basket"></i> <sup>9+</sup> <span>total
-								price<small>$345.00</small>
+							<i class="fas fa-shopping-basket"></i> <sup>9+</sup>
+								<span>total price<small>$345.00</small>
 							</span>
 						</button>
 					</div>
@@ -135,7 +135,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 											<li><a th:href="@{/forgotPassword}">Quên mật khẩu</a></li>
 							            </th:block>
 							            <th:block th:if="${#request.remoteUser}">
-											<li><a th:href="@{/profile}">Thông tin</a></li>
+											<li><a th:href="@{/profile}">Thông tin tài khoản</a></li>
 											<li><a th:href="@{/logout}">Đăng xuất</a></li>
 						              	</th:block>
 										
@@ -152,7 +152,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 								<div class="navbar-info">
 									<i class="icofont-ui-email"></i>
 									<p>
-										<small>email</small><span>support@greeny.com</span>
+										<small>email</small><span>greenyshop123vn@gmail.com</span>
 									</p>
 								</div>
 							</div>
@@ -374,7 +374,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 				</li>
 			</ul>
 			<div class="cart-footer">
-				<a class="cart-checkout-btn" href="/thanh-toan"><span
+				<a class="cart-checkout-btn" th:href="@{/shoppingCart_checkout}"><span
 					class="checkout-label">Thanh Toán</span><span
 					class="checkout-price">$369.78</span></a>
 			</div>

@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
  *
  */
 @Controller
-public class CartController {
+public class CartController extends CommomController{
 
-	@GetMapping(value = "/thanh-toan")
+	@GetMapping(value = "/shoppingCart_checkout")
 	public String checkOut() {
 		
 		return "web/shoppingCart_checkout";

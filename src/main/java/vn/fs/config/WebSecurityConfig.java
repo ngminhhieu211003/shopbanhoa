@@ -39,9 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-
 		auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder());
-
 	}
 	
 	@Override
@@ -80,8 +78,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 //				.antMatchers("/checkout1")
 //				.access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
 			
-			http.rememberMe()
-				.rememberMeParameter("remember"); // [remember-me]
+		http.rememberMe()
+			.rememberMeParameter("remember"); // [remember-me]
 	}
 
 }
