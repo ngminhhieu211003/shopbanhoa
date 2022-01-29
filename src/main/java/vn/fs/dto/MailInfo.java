@@ -1,4 +1,4 @@
-package vn.fs.model;
+package vn.fs.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +15,7 @@ public class MailInfo {
 	String attachments;
 
 	public MailInfo(String to, String subject, String body) {
-		this.from = "Greeny Shop <poly@fpt.edu.vn>";
+		this.from = "Greeny Shop <support@gmail.com>";
 		this.to = to;
 		this.subject = subject;
 		this.body = body;

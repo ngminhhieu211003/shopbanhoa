@@ -15,7 +15,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import vn.fs.model.MailInfo;
+import vn.fs.dto.MailInfo;
 import vn.fs.service.SendMailService;
 
 @Service

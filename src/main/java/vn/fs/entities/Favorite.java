@@ -31,8 +31,8 @@ public class Favorite implements Serializable {
 	private Long favoriteId;
 
 	@ManyToOne()
-	@JoinColumn(name = "userId")
-	private User user;
+	@JoinColumn(name = "customerId")
+	private Customer customer;
 
 	@ManyToOne()
 	@JoinColumn(name = "productId")

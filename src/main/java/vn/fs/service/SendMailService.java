@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import javax.mail.MessagingException;
 
-import vn.fs.model.MailInfo;
+import vn.fs.dto.MailInfo;
 
 public interface SendMailService {
 	void run();

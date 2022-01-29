@@ -23,4 +23,5 @@ public interface ShoppingCartService {
 	void add(CartItem item);
 
 	void remove(Product product);
+
 }
