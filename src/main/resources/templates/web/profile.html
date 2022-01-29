@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <meta
     http-equiv="content-type"
     content="text/html;charset=utf-8"
@@ -47,7 +47,7 @@
       <div class="container">
         <h2>thông tin tài khoản</h2>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/trang-chu">Trang chủ</a></li>
+          <li class="breadcrumb-item"><a th:href="@{/}">Trang chủ</a></li>
           
         </ol>
       </div>
@@ -70,39 +70,24 @@
                       <a href="#"><img src="images/user.png" alt="user" /></a>
                     </div>
                   </div>
-                  <div class="col-md-4 col-lg-3">
+                  <div class="col-md-6 col-lg-4">
                     <div class="form-group">
-                      <label class="form-label">Tên</label
-                      ><input
+                      <label class="form-label">Họ và tên</label>
+                      <input
                         class="form-control"
                         type="text"
-                        value="Miron Mahmud"
+                        th:value="${user.name}"
                       />
                     </div>
                   </div>
-                  <div class="col-md-4 col-lg-3">
+                  <div class="col-md-6 col-lg-4">
                     <div class="form-group">
-                      <label class="form-label">Email</label
+                      <label class="form-label">Địa chỉ Email</label
                       ><input
                         class="form-control"
                         type="email"
-                        value="mironcoder@gmail.com"
+                        th:value="${user.email}"
                       />
-                    </div>
-                  </div>
-                  <div class="col-md-4 col-lg-3">
-                    <div class="form-group">
-                      <label class="form-label">Số điện thoại</label
-                      ><input
-                        class="form-control"
-                        type="text"
-                        value="Miron Mahmud"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-2">
-                    <div class="profile-btn">
-                      <a href="change-password.html">Đổi mật khẩu</a>
                     </div>
                   </div>
                 </div>

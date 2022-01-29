@@ -37,6 +37,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         return auth;
     }
 	
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+
+		auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder());
+
+	}
+	
 	@Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
@@ -44,30 +51,37 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http
-		.authorizeRequests()
-			.antMatchers(
-				 "/register",
-				 "/login",
-				 "/confirmOtpRegister",
-	             "/js/**",
-	             "/css/**",
-	             "/img/**").permitAll()
+		
+		http.csrf().disable();
+		
+		// Trang chỉ dành cho ADMIN
+		http.authorizeRequests().antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')");
+		
+		http.authorizeRequests()
+			.antMatchers("/**").permitAll()
 			.anyRequest().authenticated()
 			.and()
 		.formLogin()
 			.loginProcessingUrl("/doLogin")
 			.loginPage("/login")
-			.defaultSuccessUrl("/home")
+			.defaultSuccessUrl("/?login_success")
 			.failureUrl("/login?error=true")
 			.permitAll()
 			.and()
-			.logout()
+		.logout()
 			.invalidateHttpSession(true)
 			.clearAuthentication(true)
 			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-			.logoutSuccessUrl("/login?logout")
+			.logoutSuccessUrl("/?logout_success")
 			.permitAll();
+		
+			// Nếu chưa login, nó sẽ redirect tới trang /login.
+//			http.authorizeRequests()
+//				.antMatchers("/checkout1")
+//				.access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
+			
+			http.rememberMe()
+				.rememberMeParameter("remember"); // [remember-me]
 	}
 
 }

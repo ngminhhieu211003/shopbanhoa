@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
  *
  */
 @Controller
-public class ContactController {
+public class ContactController extends CommomController{
 
-	@GetMapping(value = "/lien-he")
+	@GetMapping(value = "/contact")
 	public String contact() {
 		
 		return "web/contact";

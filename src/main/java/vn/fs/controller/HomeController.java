@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
  *
  */
 @Controller
-public class HomeController {
+public class HomeController extends CommomController {
 
 	@GetMapping(value = "/")
 	public String home() {
 
 		return "web/home";
-
 	}
+
 }

@@ -37,7 +37,7 @@
         <div class="row justify-content-center">
           <div class="col-12 col-sm-10 col-md-12 col-lg-12 col-xl-10">
             <div class="user-form-logo">
-              <a href="/trang-chu"><img src="images/logo.png" alt="logo" /></a>
+              <a th:href="@{/}"><img src="images/logo.png" alt="logo" /></a>
             </div>
             <div class="user-form-card">
               <div class="user-form-title">
@@ -48,13 +48,13 @@
                 <ul class="user-form-social">
                 
                   <li>
-                    <a class="facebook" th:href="@{/oauth2/authorization/facebook}">
+                    <a class="facebook" href="#">
                     	<i class="fab fa-facebook-f"></i>Join with facebook
                     </a>
                   </li>
                   
                   <li>
-                    <a class="google" th:href="@{/oauth2/authorization/google}">
+                    <a class="google" href="#">
                     	<i class="fab fa-google"></i>Join with google
                     </a>
                   </li>
@@ -62,36 +62,28 @@
                 </ul>
                 <div class="user-form-divider"><p>hoặc</p></div>
                 
-                <form th:action="@{/register}" method="post" th:object="${customer}" class="user-form">
+                <form th:action="@{/register}" method="post" th:object="${user}" class="user-form">
                     <div class="form-group">
                         <input
                             type="email"
                             th:field="*{email}" 
-                            name="email" id="email"
+                            id="email"
                             class="form-control"
                             placeholder="Nhập địa chỉ Email"
                             autocomplete="off"
                             required="required"
                         />
-                        <small th:if="${error}" th:text="${error}" class="text-danger"><i></i></small>
+                        <small th:if="${error}" th:text="${error}" class="text-danger"></small>
                     </div>
                     
                     <div class="form-group">
                         <input
                             type="text"
                             th:field="*{name}"
+                            id="name"
                             class="form-control"
                             placeholder="Nhập họ tên"
-                            required="required"
-                        />
-                    </div>
-                    
-                    <div class="form-group">
-                        <input
-                            type="tel"
-                            th:field="*{phone}"
-                            class="form-control"
-                            placeholder="Nhập số điện thoại"
+                            autocomplete="off"
                             required="required"
                         />
                     </div>
@@ -99,7 +91,7 @@
                     <div class="form-group">
                         <input
                             type="password"
-                            th:value="*{password}"
+                            th:field="*{password}"
                             class="form-control"
                             id="myPass"
                             name="password"
@@ -125,10 +117,10 @@
               </div>
             </div>
             <div class="user-form-remind">
-              <p>Bạn đã có tài khoản?<a href="/dang-nhap">Đăng nhập tại đây</a></p>
+              <p>Bạn đã có tài khoản?<a th:href="@{/login}">Đăng nhập tại đây</a></p>
             </div>
             <div class="user-form-footer">
-              <p>Greeny | &COPY; Developer by <a href="#">DongTHD</a></p>
+              <p>Greeny | &COPY; Developer by <a href="javascript:void(0);">DongTHD</a></p>
             </div>
           </div>
         </div>

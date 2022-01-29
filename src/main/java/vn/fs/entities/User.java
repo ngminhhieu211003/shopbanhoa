@@ -1,5 +1,6 @@
 package vn.fs.entities;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
@@ -15,11 +16,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
+
 import javax.persistence.JoinColumn;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
-public class User {
+public class User implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

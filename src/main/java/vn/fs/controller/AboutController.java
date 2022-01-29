@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
  *
  */
 @Controller
-public class AboutController {
+public class AboutController extends CommomController{
 
-	@GetMapping(value = "/gioi-thieu")
+	@GetMapping(value = "/aboutUs")
 	public String about() {
 		
 		return "web/about";
