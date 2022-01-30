@@ -53,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		http.csrf().disable();
 		
 		// Trang chỉ dành cho ADMIN
-		http.authorizeRequests().antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')");
+		http.authorizeRequests().antMatchers("/admin/****").access("hasRole('ROLE_ADMIN')");
 		
 		http.authorizeRequests()
 			.antMatchers("/**").permitAll()
@@ -63,6 +63,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			.loginProcessingUrl("/doLogin")
 			.loginPage("/login")
 			.defaultSuccessUrl("/?login_success")
+			.successHandler(new SuccessHandler()).failureUrl("/login?error=true")
 			.failureUrl("/login?error=true")
 			.permitAll()
 			.and()

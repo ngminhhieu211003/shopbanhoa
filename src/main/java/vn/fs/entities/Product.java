@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,6 +38,7 @@ public class Product implements Serializable {
 	private int discount;
 	private String productImage;
 	private String description;
+	@Temporal(TemporalType.DATE)
 	private Date enteredDate;
 	private Boolean status;
 

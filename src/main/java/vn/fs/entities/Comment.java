@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,6 +35,7 @@ public class Comment implements Serializable {
 	private Long id;
 	private Double rating;
 	private String content;
+	@Temporal(TemporalType.DATE)
 	private Date rateDate;
 
 	@ManyToOne
