@@ -19,7 +19,7 @@
       name="keywords"
       content="organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, products, farm, grocery, natural, online"
     />
-    <title>Shop 4 Column - Greeny</title>
+    <title>Sản phẩm - Greeny</title>
     <link rel="icon" href="images/favicon.png" />
     <link rel="stylesheet" href="fonts/flaticon/flaticon.css" />
     <link rel="stylesheet" href="fonts/icofont/icofont.min.css" />
@@ -434,10 +434,8 @@
                         </a>
                         <a
                         title="Thông tin chi tiết"
-                        href="#"
-                        class="fas fa-eye"
-                        data-bs-toggle="modal"
-                        data-bs-target="#product-view">
+                        th:href="@{/productDetail(id=${item.productId})}"
+                        class="fas fa-eye">
                     </a>
                     </div>
                   </div>
