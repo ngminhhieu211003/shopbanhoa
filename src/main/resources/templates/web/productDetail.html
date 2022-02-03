@@ -89,7 +89,8 @@
                 ><a href="#">(3 reviews)</a>
               </div>
               <h3 class="details-price">
-                <del>$38.00</del><span>[[${#numbers.formatDecimal(product.price, 1, 'DEFAULT', 0, 'DEFAULT')}+' đ']]<small>/kg</small></span>
+                <del>[[${#numbers.formatDecimal(product.price, 1, 'DEFAULT', 0, 'DEFAULT')}+' đ']]</del>
+                <span>[[${#numbers.formatDecimal(product.price - (product.price * product.discount/100), 1, 'DEFAULT', 0, 'DEFAULT')}+' đ']]<small>/kg</small></span>
               </h3>
               <p class="details-desc">
                 [[${product.description}]]
@@ -121,7 +122,7 @@
               </div>
               <div class="details-add-group">
                 <button class="product-add" title="Add to Cart">
-                  <i class="fas fa-shopping-basket"></i><span>add to cart</span>
+                  <i class="fas fa-shopping-basket"></i><span>Thêm giỏ hàng</span>
                 </button>
                 <div class="product-action">
                   <button class="action-minus" title="Quantity Minus">
@@ -221,7 +222,7 @@
 							<div class="product-card">
 								<div class="product-media">
 									<div class="product-label">
-										<label class="label-text new">new</label>
+										<label class="label-text sale">- [[${item.discount + '%'}]]</label>
 									</div>
 									<button class="product-wish wish">
 										<i class="fas fa-heart"></i>
@@ -262,8 +263,8 @@
 										<a href="product-video.html">[[${item.productName}]]</a>
 									</h6>
 									<h6 class="product-price">
-										<del>$34</del>
-										<span>[[${#numbers.formatDecimal(item.price, 1, 'DEFAULT', 0, 'DEFAULT')}+' đ']]<small> /kg</small></span>
+										<del>[[${#numbers.formatDecimal(item.price, 1, 'DEFAULT', 0, 'DEFAULT')}+' đ']]</del>
+										<span>[[${#numbers.formatDecimal(item.price - (item.price * item.discount/100), 1, 'DEFAULT', 0, 'DEFAULT')}+' đ']]<small> /kg</small></span>
 									</h6>
 									<button class="product-add" title="Add to Cart">
 										<i class="fas fa-shopping-basket"></i><span>Thêm giỏ hàng</span>
@@ -288,7 +289,7 @@
 			<div class="row">
 				<div class="col">
 					<div class="section-btn-25">
-						<a href="shop-4column.html" class="btn btn-outline"><i
+						<a th:href="@{/products}" class="btn btn-outline"><i
 							class="fas fa-eye"></i><span>xem thêm</span></a>
 					</div>
 				</div>

@@ -1112,7 +1112,7 @@
 									</h6>
 									<h6 class="product-price">
 										<del>[[${#numbers.formatDecimal(item.price, 1, 'DEFAULT', 0, 'DEFAULT')}+' đ']]</del>
-										<span>[['$'+ ${#numbers.formatDecimal(item.price - (item.price * item.discount/100), 1, 'DEFAULT', 0, 'DEFAULT')}]]<small>/kg</small></span>
+										<span>[[${#numbers.formatDecimal(item.price - (item.price * item.discount/100), 1, 'DEFAULT', 0, 'DEFAULT')}+' đ']]<small>/kg</small></span>
 									</h6>
 									<button class="product-add" title="Add to Cart">
 										<i class="fas fa-shopping-basket"></i><span>Thêm giỏ hàng</span>
