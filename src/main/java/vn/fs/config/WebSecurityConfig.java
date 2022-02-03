@@ -52,8 +52,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		http.csrf().disable();
 		
-		// Trang chỉ dành cho ADMIN
-		http.authorizeRequests().antMatchers("/admin/****").access("hasRole('ROLE_ADMIN')");
+		// Admin page
+		http.authorizeRequests().antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')");
+		
+		// If you are not logged in, you will be redirected to the /login page.
+		http.authorizeRequests().antMatchers("/shoppingCart_checkout").access("hasRole('ROLE_USER')");
 		
 		http.authorizeRequests()
 			.antMatchers("/**").permitAll()
@@ -73,14 +76,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 			.logoutSuccessUrl("/?logout_success")
 			.permitAll();
-		
-			// Nếu chưa login, nó sẽ redirect tới trang /login.
-//			http.authorizeRequests()
-//				.antMatchers("/checkout1")
-//				.access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
 			
+		 // remember-me
 		http.rememberMe()
-			.rememberMeParameter("remember"); // [remember-me]
+			.rememberMeParameter("remember");
 	}
 
 }

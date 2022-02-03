@@ -18,5 +18,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	// Top 10 product by category
 	@Query(value = "SELECT * FROM products AS b WHERE b.category_id = ?;", nativeQuery = true)
 	List<Product> listProductByCategory10(Long categoryId);
+	
+	// List product new
+	@Query(value = "SELECT * FROM products ORDER BY entered_date DESC limit 20;", nativeQuery = true)
+	public List<Product> listProductNew20();
 
 }

@@ -19,7 +19,7 @@
       name="keywords"
       content="organic, food, shop, ecommerce, store, html, bootstrap, template, agriculture, vegetables, products, farm, grocery, natural, online"
     />
-    <title>Sản phẩm - Greeny</title>
+    <title>Web bán hàng nông sản</title>
     <link rel="icon" href="images/favicon.png" />
     <link rel="stylesheet" href="fonts/flaticon/flaticon.css" />
     <link rel="stylesheet" href="fonts/icofont/icofont.min.css" />
@@ -411,7 +411,7 @@
                 <div class="product-card">
                   <div class="product-media">
                     <div class="product-label">
-                      <label class="label-text new">[[${item.discount + '%'}]]</label>
+                      <label class="label-text sale">- [[${item.discount + '%'}]]</label>
                     </div>
                     <button class="product-wish wish">
                       <i class="fas fa-heart"></i>
@@ -452,7 +452,8 @@
                       <a href="product-video.html">[[${item.productName}]]</a>
                     </h6>
                     <h6 class="product-price">
-                      <del>$34</del><span>[[${#numbers.formatDecimal(item.price, 1, 'DEFAULT', 0, 'DEFAULT')}+' đ']]<small>/kg</small></span>
+                      <del>[[${#numbers.formatDecimal(item.price, 1, 'DEFAULT', 0, 'DEFAULT')}+' đ']]</del>
+                      <span>[['$'+ ${#numbers.formatDecimal(item.price - (item.price * item.discount/100), 1, 'DEFAULT', 0, 'DEFAULT')}]]<small>/kg</small></span>
                     </h6>
                     <button class="product-add" title="Thêm Giỏ Hàng">
                       <i class="fas fa-shopping-basket"></i><span>Thêm Giỏ Hàng</span>

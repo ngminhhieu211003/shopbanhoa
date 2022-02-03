@@ -22,7 +22,6 @@ public class ProductDetailController extends CommomController{
 	@Autowired
 	ProductRepository productRepository;
 
-	
 	@GetMapping(value = "productDetail")
 	public String productDetail(@RequestParam("id") Long id, Model model, User user) {
 
