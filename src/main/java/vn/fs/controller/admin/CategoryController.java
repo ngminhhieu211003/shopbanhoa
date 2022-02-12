@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import vn.fs.entities.Category;
+import vn.fs.entities.User;
 import vn.fs.repository.CategoryRepository;
+import vn.fs.repository.UserRepository;
 
 @Controller
 @RequestMapping("/admin")
@@ -24,6 +26,21 @@ public class CategoryController {
 
 	@Autowired
 	CategoryRepository categoryRepository;
+	
+	@Autowired
+	UserRepository userRepository;
+	
+	@ModelAttribute(value = "user")
+	public User user(Model model, Principal principal, User user) {
+
+		if (principal != null) {
+			model.addAttribute("user", new User());
+			user = userRepository.findByEmail(principal.getName());
+			model.addAttribute("user", user);
+		}
+
+		return user;
+	}
 
 	// show list category - table list
 	@ModelAttribute("categories")

@@ -28,8 +28,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import vn.fs.entities.Category;
 import vn.fs.entities.Product;
+import vn.fs.entities.User;
 import vn.fs.repository.CategoryRepository;
 import vn.fs.repository.ProductRepository;
+import vn.fs.repository.UserRepository;
 
 @Controller
 @RequestMapping("/admin")
@@ -43,6 +45,21 @@ public class ProductController{
 
 	@Autowired
 	CategoryRepository categoryRepository;
+	
+	@Autowired
+	UserRepository userRepository;
+	
+	@ModelAttribute(value = "user")
+	public User user(Model model, Principal principal, User user) {
+
+		if (principal != null) {
+			model.addAttribute("user", new User());
+			user = userRepository.findByEmail(principal.getName());
+			model.addAttribute("user", user);
+		}
+
+		return user;
+	}
 
 	public ProductController(CategoryRepository categoryRepository,
 			ProductRepository productRepository) {

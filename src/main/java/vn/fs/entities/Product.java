@@ -41,6 +41,7 @@ public class Product implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date enteredDate;
 	private Boolean status;
+	public boolean favorite;
 
 	@ManyToOne
 	@JoinColumn(name = "categoryId")

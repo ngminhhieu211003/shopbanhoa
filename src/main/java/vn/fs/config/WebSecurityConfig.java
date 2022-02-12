@@ -56,7 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')");
 		
 		// If you are not logged in, you will be redirected to the /login page.
-		http.authorizeRequests().antMatchers("/shoppingCart_checkout").access("hasRole('ROLE_USER')");
+		http.authorizeRequests().antMatchers("/checkout").access("hasRole('ROLE_USER')");
 		
 		http.authorizeRequests()
 			.antMatchers("/**").permitAll()

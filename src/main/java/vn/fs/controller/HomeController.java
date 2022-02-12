@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import vn.fs.commom.CommomDataService;
 import vn.fs.entities.Product;
+import vn.fs.entities.User;
 import vn.fs.repository.ProductRepository;
 
 /**
@@ -20,10 +22,14 @@ public class HomeController extends CommomController {
 	
 	@Autowired
 	ProductRepository productRepository;
+	
+	@Autowired
+	CommomDataService commomDataService;
 
 	@GetMapping(value = "/")
-	public String home() {
+	public String home(Model model, User user) {
 
+		commomDataService.commonData(model, user);
 		return "web/home";
 	}
 	

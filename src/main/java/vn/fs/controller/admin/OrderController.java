@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,9 +21,11 @@ import vn.fs.dto.OrderExcelExporter;
 import vn.fs.entities.Order;
 import vn.fs.entities.OrderDetail;
 import vn.fs.entities.Product;
+import vn.fs.entities.User;
 import vn.fs.repository.OrderDetailRepository;
 import vn.fs.repository.OrderRepository;
 import vn.fs.repository.ProductRepository;
+import vn.fs.repository.UserRepository;
 import vn.fs.service.OrderDetailService;
 import vn.fs.service.SendMailService;
 
@@ -44,6 +47,21 @@ public class OrderController {
 
 	@Autowired
 	SendMailService sendMailService;
+	
+	@Autowired
+	UserRepository userRepository;
+	
+	@ModelAttribute(value = "user")
+	public User user(Model model, Principal principal, User user) {
+
+		if (principal != null) {
+			model.addAttribute("user", new User());
+			user = userRepository.findByEmail(principal.getName());
+			model.addAttribute("user", user);
+		}
+
+		return user;
+	}
 
 	// list order
 	@GetMapping(value = "/orders")

@@ -13,7 +13,7 @@ import vn.fs.service.ShoppingCartService;
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
 
-	private Map<Long, CartItem> map = new HashMap<>(); // <Long, CartItem>
+	private Map<Long, CartItem> map = new HashMap<Long, CartItem>(); // <Long, CartItem>
 
 	@Override
 	public void add(CartItem item) {

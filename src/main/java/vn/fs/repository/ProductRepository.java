@@ -22,5 +22,17 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	// List product new
 	@Query(value = "SELECT * FROM products ORDER BY entered_date DESC limit 20;", nativeQuery = true)
 	public List<Product> listProductNew20();
+	
+	// Search Product
+	@Query(value = "SELECT * FROM products WHERE product_name LIKE %?1%" , nativeQuery = true)
+	public List<Product> searchProduct(String productName);
+	
+	// Hiển thị mỗi loại sản phẩm có bao nhiêu số lượng
+	@Query(value = "SELECT c.category_id,c.category_name,\r\n"
+			+ "COUNT(*) AS SoLuong\r\n"
+			+ "FROM products p\r\n"
+			+ "JOIN categories c ON p.category_id = c.category_id\r\n"
+			+ "GROUP BY c.category_name;" , nativeQuery = true)
+	List<Object[]> listCategoryByProductName();
 
 }

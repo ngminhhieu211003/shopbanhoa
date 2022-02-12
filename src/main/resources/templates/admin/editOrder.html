@@ -102,13 +102,12 @@
 						                        <td class="text-center" th:text="${count.index+1}"></td>
 						                        <td th:text="${item.product.productName}"></td>
 						                        <td th:text="${item.quantity}"></td>
-						                        <td th:text="${#numbers.formatDecimal(item.price, 1, 'DEFAULT', 0, 'DEFAULT')}+' VNĐ'"></td>
-						                        <td th:text="${#numbers.formatDecimal(item.order.amount, 1, 'DEFAULT', 0, 'DEFAULT')}+' VNĐ'"></td>
+						                        <td>[[${#numbers.formatDecimal(item.price - (item.price * item.product.discount/100), 1, 'DEFAULT', 0, 'DEFAULT')}+ ' đ']]</td>
+						                        <td>[[${#numbers.formatDecimal((item.price - (item.price * item.product.discount/100)) * item.quantity, 1, 'DEFAULT', 0, 'DEFAULT')}+ ' đ']]</td>
 						                    </tr>
 										</tbody>
 									</table>
 									
-									<!-- Delete Category th:data-id="${item.categoryId}" th:href="@{/editCategory/(id=${category.categoryId})}"-->
 									<script>
 									function showConfigModalDialog(id, name) {
 										$('#name').text(name);

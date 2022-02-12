@@ -66,8 +66,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 						</a>
 					</th:block>
 					
-					<form class="header-form">
-						<input type="text" placeholder="Tìm kiếm..." />
+					<form th:action="@{/searchProduct}" class="header-form">
+						<input type="text" name="keyword" th:value="${keyword}" placeholder="Tìm kiếm..." />
 						<button>
 							<i class="fas fa-search"></i>
 						</button>
@@ -83,9 +83,9 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 							<i class="fas fa-heart"></i><sup>0</sup>
 						</a>
 						<button class="header-widget header-cart" title="Giỏ hàng">
-							<i class="fas fa-shopping-basket"></i> <sup>9+</sup>
-								<span>total price<small>$345.00</small>
-							</span>
+							<i class="fas fa-shopping-basket"></i> <sup th:text="${totalCartItems}" id="totalCartItems"></sup>
+								<!-- <span>Tổng tiền<small>[[${#numbers.formatDecimal(totalPrice, 1, 'DEFAULT', 0, 'DEFAULT')}+ ' đ']]</small>
+							</span> -->
 						</button>
 					</div>
 				</div>
@@ -118,7 +118,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 									<a class="navbar-link dropdown-arrow" href="javascript:void(0);">Thể loại</a>
 									<ul class="dropdown-position-list">
 										<li th:each="item : ${categoryList}">
-											<a th:href="@{/productByCategory(categoryId=${item.categoryId})}">[[${item.categoryName}]]</a>
+											<a th:href="@{/productByCategory(id=${item.categoryId})}">[[${item.categoryName}]]</a>
 										</li>
 									</ul>
 								</li>
@@ -168,217 +168,45 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 		<aside class="cart-sidebar">
 			<div class="cart-header">
 				<div class="cart-total">
-					<i class="fas fa-shopping-basket"></i><span>total item (5)</span>
+					<i class="fas fa-shopping-basket"></i><span>Tổng số lượng giỏ hàng ([[${totalCartItems}]])</span>
 				</div>
 				<button class="cart-close">
 					<i class="icofont-close"></i>
 				</button>
 			</div>
 			<ul class="cart-list">
-				<li class="cart-item">
+				<li class="cart-item" th:each="item : ${cartItems}">
 					<div class="cart-media">
-						<a href="#"><img src="images/product/01.jpg" alt="product" /></a>
-						<button class="cart-delete">
-							<i class="far fa-trash-alt"></i>
-						</button>
+						<a th:href="@{/productDetail(id=${item.product.productId})}">
+							<img th:src="@{'/loadImage?imageName='+${item.product.productImage}}" alt="product" />
+						</a>
+						
 					</div>
 					<div class="cart-info-group">
 						<div class="cart-info">
+							
 							<h6>
-								<a href="product-single.html">existing product name</a>
-							</h6>
-							<p>Unit Price - $8.75</p>
-						</div>
-						<div class="cart-action-group">
-							<div class="product-action">
-								<button class="action-minus" title="Quantity Minus">
-									<i class="icofont-minus"></i>
-								</button>
-								<input class="action-input" title="Quantity Number" type="text"
-									name="quantity" value="1" />
-								<button class="action-plus" title="Quantity Plus">
-									<i class="icofont-plus"></i>
-								</button>
-							</div>
-							<h6>$56.98</h6>
-						</div>
-					</div>
-				</li>
-				<li class="cart-item">
-					<div class="cart-media">
-						<a href="#"><img src="images/product/02.jpg" alt="product" /></a>
-						<button class="cart-delete">
-							<i class="far fa-trash-alt"></i>
-						</button>
-					</div>
-					<div class="cart-info-group">
-						<div class="cart-info">
-							<h6>
-								<a href="product-single.html">existing product name</a>
-							</h6>
-							<p>Unit Price - $8.75</p>
-						</div>
-						<div class="cart-action-group">
-							<div class="product-action">
-								<button class="action-minus" title="Quantity Minus">
-									<i class="icofont-minus"></i>
-								</button>
-								<input class="action-input" title="Quantity Number" type="text"
-									name="quantity" value="1" />
-								<button class="action-plus" title="Quantity Plus">
-									<i class="icofont-plus"></i>
-								</button>
-							</div>
-							<h6>$56.98</h6>
-						</div>
-					</div>
-				</li>
-				<li class="cart-item">
-					<div class="cart-media">
-						<a href="#"><img src="images/product/03.jpg" alt="product" /></a>
-						<button class="cart-delete">
-							<i class="far fa-trash-alt"></i>
-						</button>
-					</div>
-					<div class="cart-info-group">
-						<div class="cart-info">
-							<h6>
-								<a href="product-single.html">existing product name</a>
-							</h6>
-							<p>Unit Price - $8.75</p>
-						</div>
-						<div class="cart-action-group">
-							<div class="product-action">
-								<button class="action-minus" title="Quantity Minus">
-									<i class="icofont-minus"></i>
-								</button>
-								<input class="action-input" title="Quantity Number" type="text"
-									name="quantity" value="1" />
-								<button class="action-plus" title="Quantity Plus">
-									<i class="icofont-plus"></i>
-								</button>
-							</div>
-							<h6>$56.98</h6>
-						</div>
-					</div>
-				</li>
-				<li class="cart-item">
-					<div class="cart-media">
-						<a href="#"><img src="images/product/04.jpg" alt="product" /></a>
-						<button class="cart-delete">
-							<i class="far fa-trash-alt"></i>
-						</button>
-					</div>
-					<div class="cart-info-group">
-						<div class="cart-info">
-							<h6>
-								<a href="product-single.html">existing product name</a>
-							</h6>
-							<p>Unit Price - $8.75</p>
-						</div>
-						<div class="cart-action-group">
-							<div class="product-action">
-								<button class="action-minus" title="Quantity Minus">
-									<i class="icofont-minus"></i>
-								</button>
-								<input class="action-input" title="Quantity Number" type="text"
-									name="quantity" value="1" />
-								<button class="action-plus" title="Quantity Plus">
-									<i class="icofont-plus"></i>
-								</button>
-							</div>
-							<h6>$56.98</h6>
-						</div>
-					</div>
-				</li>
-				<li class="cart-item">
-					<div class="cart-media">
-						<a href="#"><img src="images/product/05.jpg" alt="product" /></a>
-						<button class="cart-delete">
-							<i class="far fa-trash-alt"></i>
-						</button>
-					</div>
-					<div class="cart-info-group">
-						<div class="cart-info">
-							<h6>
-								<a href="product-single.html">existing product name</a>
-							</h6>
-							<p>Unit Price - $8.75</p>
-						</div>
-						<div class="cart-action-group">
-							<div class="product-action">
-								<button class="action-minus" title="Quantity Minus">
-									<i class="icofont-minus"></i>
-								</button>
-								<input class="action-input" title="Quantity Number" type="text"
-									name="quantity" value="1" />
-								<button class="action-plus" title="Quantity Plus">
-									<i class="icofont-plus"></i>
-								</button>
-							</div>
-							<h6>$56.98</h6>
-						</div>
-					</div>
-				</li>
-				<li class="cart-item">
-					<div class="cart-media">
-						<a href="#"><img src="images/product/05.jpg" alt="product" /></a>
-						<button class="cart-delete">
-							<i class="far fa-trash-alt"></i>
-						</button>
-					</div>
-					<div class="cart-info-group">
-						<div class="cart-info">
-							<h6>
-								<a href="product-single.html">existing product name</a>
-							</h6>
-							<p>Unit Price - $8.75</p>
-						</div>
-						<div class="cart-action-group">
-							<div class="product-action">
-								<button class="action-minus" title="Quantity Minus">
-									<i class="icofont-minus"></i>
-								</button>
-								<input class="action-input" title="Quantity Number" type="text"
-									name="quantity" value="1" />
-								<button class="action-plus" title="Quantity Plus">
-									<i class="icofont-plus"></i>
-								</button>
-							</div>
-							<h6>$56.98</h6>
-						</div>
-					</div>
-				</li>
-				<li class="cart-item">
-					<div class="cart-media">
-						<a href="#"><img src="images/product/05.jpg" alt="product" /></a>
-						<button class="cart-delete">
-							<i class="far fa-trash-alt"></i>
-						</button>
-					</div>
-					<div class="cart-info-group">
-						<div class="cart-info">
-							<h6>
-								<a href="product-single.html">existing product name</a>
+								<label>Tên sản phẩm :</label>
+								<a th:href="@{/productDetail(id=${item.product.productId})}" style="color: #119744">[[${item.product.productName}]]</a>
 							</h6>
 							<label>Đơn giá :</label>
-							<p>Unit Price - $8.75</p>
+							<p>[[${#numbers.formatDecimal(item.product.price - (item.product.price * item.product.discount/100), 1, 'DEFAULT', 0, 'DEFAULT')}+' đ']]</p>
 						</div>
 						<div class="cart-action-group">
 							<div class="product-action">
 								<label>Số lượng :</label>
 								<input class="action-input" title="Quantity Number" type="text"
-									name="quantity" value="1" />
+									name="quantity" th:value="${item.quantity}" />
 							</div>
-							<h6>$56.98</h6>
+							<h6>[[${#numbers.formatDecimal((item.product.price - (item.product.price * item.product.discount/100)) * item.quantity, 1, 'DEFAULT', 0, 'DEFAULT')}+ ' đ']]</h6>
 						</div>
 					</div>
 				</li>
 			</ul>
 			<div class="cart-footer">
-				<a class="cart-checkout-btn" th:href="@{/shoppingCart_checkout}"><span
-					class="checkout-label">Thanh Toán</span><span
-					class="checkout-price">$369.78</span></a>
+				<a class="cart-checkout-btn" th:href="@{/checkout}"><span
+					class="checkout-label">Thanh Toán</span>
+				</a>
 			</div>
 		</aside>
 		

@@ -64,149 +64,19 @@
           <div class="col-lg-12">
             <div class="account-card">
               <div class="account-title"><h4>Đơn Đặt Hàng Của Bạn</h4></div>
-              <div th:unless="${totalCartItems!=0}" class="text-center">
-					<h3 style="color: #119744" class="mt-5">Hiện tại bạn chưa có sản phẩm nào trong giỏ hàng!</h3>
-					<h4 style="color: #119744">Hãy mua sắm đi nào!</h4>
-					<a th:href="@{/products}" style="text-decoration: underline;">Click tại đây!</a>
+              <div class="text-center">
+					<h3 style="color: #119744" class="mt-5">THANH TOÁN ĐƠN HÀNG THÀNH CÔNG!</h3>
+					<br>
+					<h4>Chúc mừng bạn <span style="text-decoration: underline; color: #119744">[[${user.name}]]</span> đã thanh toán đơn hàng thành công!</h4>
+					<h5><em>Chúng tôi sẽ sớm giao đơn hàng cho bạn, cảm ơn!</em></h5>
+					<h5><em>Thank you for your purchase, thank you!</em></h5>
+					<hr>
+					<a th:href="@{/}" style="text-decoration: underline; color: #119744"><em>Click tại đây để tiếp tục mua sắm!</em></a>
 				</div>
-              <div class="account-content">
-                <div class="table-scroll">
-                  <table class="table-list" th:if="${totalCartItems!=0}">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Sản phẩm</th>
-                        <th scope="col">Tên sản phẩm</th>
-                        <th scope="col">Đơn giá</th>
-                        <th scope="col">Thể loại</th>
-                        <th scope="col">Số lượng</th>
-                        <th scope="col">action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    
-                      <tr th:each="item,State : ${cartItems}">
-                        <td class="table-serial"><h6>[[${State.index + 1}]]</h6></td>
-                        <td class="table-image">
-                          <img  th:src="@{'/loadImage?imageName='+${item.product.productImage}}" alt="product" />
-                        </td>
-                        <td class="table-name"><h6>[[${item.product.productName}]]</h6></td>
-                        <td class="table-price">
-                          <h6>[[${#numbers.formatDecimal(item.product.price - (item.product.price * item.product.discount/100), 1, 'DEFAULT', 0, 'DEFAULT')} +' đ']]<small>/kg</small></h6>
-                        </td>
-                        <td class="table-brand"><h6>[[${item.product.category.categoryName}]]</h6></td>
-                        <td class="table-quantity"><h6>[[${item.quantity}]]</h6></td>
-                        <td class="table-action">
-                          <a
-                            class="view"
-                            th:href="@{/productDetail(id=${item.product.productId})}"
-                            title="Chi tiết sản phẩm">
-                            <i class="fas fa-eye"></i>
-                            </a>
-                            
-                            <a class="trash" href="javascript:void(0);" title="Xóa sản phẩm" th:data-id="${item.product.productId}" th:data-name="${item.product.productName}"
-										onclick="showConfigModalDialog(this.getAttribute('data-id'), this.getAttribute('data-name'))">
-                            	<i class="icofont-trash"></i>
-                            </a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <th:block th:if="${totalCartItems!=0}">
-                <div class="chekout-coupon">
-                  <h4>Tổng tiền thanh toán</h4>
-                </div>
-                <div class="checkout-charge">
-                  <ul>
-                    <li>
-                      <span>Tổng tiền thanh toán<small>(Incl. VAT)</small></span>
-                      <span>[[${#numbers.formatDecimal(totalPrice, 1, 'DEFAULT', 0, 'DEFAULT')}+ ' đ']]</span>
-                    </li>
-                  </ul>
-                </div>
-                </th:block>
-              </div>
             </div>
           </div>
 
-          <div class="col-lg-12" th:if="${totalCartItems!=0}">
-            <div class="account-card mb-0">
-              <div class="account-title">
-                <h4>Thông tin nhận hàng</h4>
-              </div>
-              <div class="account-content">
-                <div class="row">
-                    <form class="user-form" th:action="@{/checkout}" th:object="${order}" method="post">
-                        <div class="form-group">
-                            <input
-                                type="email"
-                                th:value="${user.email}"
-                                class="form-control"
-                                placeholder="Email"
-                                readonly="readonly"
-                            />
-                        </div>
-                      
-                        <div class="form-group">
-                            <input
-                                type="text"
-                                th:value="${user.name}"
-                                class="form-control"
-                                placeholder="Họ tên"
-                                readonly="readonly"
-                            />
-                        </div>
-
-                        <div class="form-group">
-                            <input
-                                type="text"
-                                th:field="*{address}"
-                                class="form-control"
-                                placeholder="Địa chỉ"
-                                required="required"
-                            />
-                        </div>
-                      
-                        <div class="form-group">
-                            <input
-                                type="tel"
-                                th:field="*{phone}"
-                                class="form-control"
-                                placeholder="Số điện thoại"
-                                required="required"
-                            />
-                        </div>
-
-                        <div class="form-group">
-                            <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Nội dung đơn hàng"
-                                
-                            />
-                        </div>
-
-                        <div class="form-group">
-                            <div class="account-title">
-                                <h4>Chọn phương thức thanh toán</h4>
-                              </div>
-                            <div class="radio">
-                                <label style="color: #119744"><input type="radio" value="cod" name="checkOut" checked> <strong><em>Ship COD ( Thanh toán khi nhận hàng )</em></strong></label>
-                            </div>
-                            <div class="radio">
-                                <label style="color: #119744"><input type="radio" value="paypal" name="checkOut"> <strong><em>Thanh Toán Với Paypal</em></strong></label>
-                            </div>
-                        </div>
-                        <div class="checkout-proced">
-                            <button type="submit" class="btn btn-inline">Đặt hàng</button>
-                        </div>
-                    </form>
-                </div>
-              </div>
-              
-            </div>
-          </div>
+          
         </div>
       </div>
     </section>

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import vn.fs.commom.CommomDataService;
 import vn.fs.entities.Product;
 import vn.fs.entities.User;
 import vn.fs.repository.ProductRepository;
@@ -21,6 +22,9 @@ public class ProductDetailController extends CommomController{
 	
 	@Autowired
 	ProductRepository productRepository;
+	
+	@Autowired
+	CommomDataService commomDataService;
 
 	@GetMapping(value = "productDetail")
 	public String productDetail(@RequestParam("id") Long id, Model model, User user) {
@@ -28,8 +32,7 @@ public class ProductDetailController extends CommomController{
 		Product product = productRepository.findById(id).orElse(null);
 		model.addAttribute("product", product);
 
-//		serviceCommon.commonData(model, customer);
-//		listBook10(model);
+		commomDataService.commonData(model, user);
 		listProductByCategory10(model, product.getCategory().getCategoryId());
 
 		return "web/productDetail";

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import vn.fs.entities.Category;
 import vn.fs.entities.User;
 import vn.fs.repository.CategoryRepository;
+import vn.fs.repository.ProductRepository;
 import vn.fs.repository.UserRepository;
 
 @Controller
@@ -21,6 +22,9 @@ public class CommomController {
 
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	ProductRepository productRepository;
 
 	@ModelAttribute(value = "user")
 	public User user(Model model, Principal principal, User user) {
@@ -41,5 +45,14 @@ public class CommomController {
 
 		return categoryList;
 	}
+	
+	/*
+	 * // count product by category public void listCategoryByProductName(Model
+	 * model) {
+	 * 
+	 * List<Object[]> coutnProductByCategory =
+	 * productRepository.listCategoryByProductName();
+	 * model.addAttribute("coutnProductByCategory", coutnProductByCategory); }
+	 */
 
 }

@@ -1079,10 +1079,11 @@
 										<img th:src="@{'/loadImage?imageName='+${item.productImage}}" alt="product" />
 										</a>
 									<div class="product-widget">
-										<a title="Product Compare"
-											href="compare.html"
-											class="fas fa-random">
-										</a>
+										 <a
+					                        title="Yêu thích"
+					                        href="compare.html"
+					                        class="fas fa-heart">
+					                        </a>
 										<a
 											title="Product Video"
 											href="https://youtu.be/9xzcVxSBbG8"
@@ -1091,8 +1092,7 @@
 											data-vbtype="video">
 										</a>
 										<a
-											title="Product View"
-											href="#"
+											title="Chi tiết sản phẩm"
 											th:href="@{/productDetail(id=${item.productId})}"
 											class="fas fa-eye">
 										</a>
@@ -1114,19 +1114,10 @@
 										<del>[[${#numbers.formatDecimal(item.price, 1, 'DEFAULT', 0, 'DEFAULT')}+' đ']]</del>
 										<span>[[${#numbers.formatDecimal(item.price - (item.price * item.discount/100), 1, 'DEFAULT', 0, 'DEFAULT')}+' đ']]<small>/kg</small></span>
 									</h6>
-									<button class="product-add" title="Add to Cart">
+									<button class="product-add1" title="Add to Cart">
 										<i class="fas fa-shopping-basket"></i><span>Thêm giỏ hàng</span>
 									</button>
-									<div class="product-action">
-										<button class="action-minus" title="Quantity Minus">
-											<i class="icofont-minus"></i>
-										</button>
-										<input class="action-input" title="Quantity Number"
-											type="text" name="quantity" value="1" />
-										<button class="action-plus" title="Quantity Plus">
-											<i class="icofont-plus"></i>
-										</button>
-									</div>
+									
 								</div>
 							</div>
 						</li>
