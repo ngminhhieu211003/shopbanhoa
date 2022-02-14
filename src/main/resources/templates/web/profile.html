@@ -59,9 +59,6 @@
             <div class="account-card">
               <div class="account-title">
                 <h4>Thông tin tài khoản</h4>
-                <button data-bs-toggle="modal" data-bs-target="#profile-edit">
-                  chỉnh sửa
-                </button>
               </div>
               <div class="account-content">
                 <div class="row">
@@ -111,7 +108,7 @@
                             <table class="table-list">
                               <thead>
                                 <tr>
-                                  <th scope="col">#</th>
+                                  <th scope="col">Mã Order</th>
                                   <th scope="col">Ngày đặt</th>
                                   <th scope="col">Tổng tiền</th>
                                   <th scope="col">Địa chỉ</th>
@@ -121,82 +118,88 @@
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr>
-                                  <td class="table-serial"><h6>01</h6></td>
-                                  <td class="table-image">
-                                    <img src="images/product/01.jpg" alt="product" />
+                                <tr th:each="item : ${orderByUser}">
+                                  <td class="table-serial"><h6>[[${item.orderId}]]</h6></td>
+                                  <td class="table-name"><h6>[[${item.orderDate}]]</h6></td>
+                                  <td class="table-price"><h6>[[${#numbers.formatDecimal(item.amount, 1, 'DEFAULT', 0, 'DEFAULT')}+' đ']]</h6></td>
+                                  <td class="table-address"><h6>[[${item.address}]]</h6></td>
+                                  <td class="table-brand"><h6>[[${item.phone}]]</h6></td>
+                                  <td class="table-status">
+                                  	<div th:if="${item.status==0}">
+										<a style="cursor: pointer; color: #0e76a8;">
+											<i class="fa fa-check-circle"> Chờ xác nhận</i>
+										</a>
+									</div>
+									
+									<div th:if="${item.status==1}">
+										<a style="cursor: pointer; color: #ffab10;">
+											<i class="fa fa-check-circle"> Đang giao hàng</i>
+										</a>
+									</div>
+									
+									<div th:if="${item.status==2}">
+										<a style="cursor: pointer; color: #119744;">
+											<i class="fa fa-check-circle"> Đã thanh toán</i>
+										</a>
+									</div>
+									
+									<div th:if="${item.status==3}">
+										<a style="cursor: pointer; color: #ff3838;">
+											<i class="fa fa-check-circle"> Đã hủy</i>
+										</a>
+									</div>
                                   </td>
-                                  <td class="table-name"><h6>product name</h6></td>
-                                  <td class="table-price">
-                                    <h6>$19<small>/kilo</small></h6>
-                                  </td>
-                                  <td class="table-brand"><h6>Fresh Company</h6></td>
-                                  <td class="table-quantity"><h6>3</h6></td>
+                                  
                                   <td class="table-action">
                                     <a
                                       class="view"
-                                      href="#"
-                                      title="Quick View"
-                                      data-bs-toggle="modal"
-                                      data-bs-target="#product-view"
-                                      ><i class="fas fa-eye"></i></a
-                                    ><a class="trash" href="#" title="Remove Wishlist"
-                                      ><i class="icofont-trash"></i
-                                    ></a>
+                                      th:href="@{'/order/detail/'+${item.orderId}}"
+                                      title="Xem chi tiết"
+                                      >
+                                      <i class="fas fa-eye"></i>
+                                      </a>
+                                      
+                                      <th:block th:if="${item.status==0}">
+	                                      <a class="trash" href="javascript:void(0);" title="Hủy đơn hàng"
+		                                      	th:data-id="${item.orderId}"
+												onclick="showConfigCancelModalDialog(this.getAttribute('data-id'))">
+	                                      	<i class="icofont-trash"></i>
+	                                      </a>
+                                      </th:block>
+                                      
+                                      <th:block th:if="${item.status!=0}">
+	                                      <a class="trash" href="javascript:void(0);" title="Không thể huỷ đơn hàng này"
+												style="cursor: not-allowed">
+	                                      	<i class="icofont-trash"></i>
+	                                      </a>
+                                      </th:block>
+                                      
                                   </td>
                                 </tr>
-                                <tr>
-                                  <td class="table-serial"><h6>02</h6></td>
-                                  <td class="table-image">
-                                    <img src="images/product/02.jpg" alt="product" />
-                                  </td>
-                                  <td class="table-name"><h6>product name</h6></td>
-                                  <td class="table-price">
-                                    <h6>$19<small>/kilo</small></h6>
-                                  </td>
-                                  <td class="table-brand"><h6>Radhuni Masala</h6></td>
-                                  <td class="table-quantity"><h6>5</h6></td>
-                                  <td class="table-action">
-                                    <a
-                                      class="view"
-                                      href="#"
-                                      title="Quick View"
-                                      data-bs-toggle="modal"
-                                      data-bs-target="#product-view"
-                                      ><i class="fas fa-eye"></i></a
-                                    ><a class="trash" href="#" title="Remove Wishlist"
-                                      ><i class="icofont-trash"></i
-                                    ></a>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td class="table-serial"><h6>05</h6></td>
-                                  <td class="table-image">
-                                    <img src="images/product/05.jpg" alt="product" />
-                                  </td>
-                                  <td class="table-name"><h6>product name</h6></td>
-                                  <td class="table-price">
-                                    <h6>$19<small>/kilo</small></h6>
-                                  </td>
-                                  <td class="table-brand"><h6>Rdhuni Company</h6></td>
-                                  <td class="table-quantity"><h6>7</h6></td>
-                                  <td class="table-action">
-                                    <a
-                                      class="view"
-                                      href="#"
-                                      title="Quick View"
-                                      data-bs-toggle="modal"
-                                      data-bs-target="#product-view"
-                                      ><i class="fas fa-eye"></i></a
-                                    ><a class="trash" href="#" title="Remove Wishlist"
-                                      ><i class="icofont-trash"></i
-                                    ></a>
-                                  </td>
-                                </tr>
+                                
                               </tbody>
                             </table>
+                            
+                            <!-- pagination  -->
+                            <div class="row">
+				              <div class="col-lg-12">
+				                <div class="bottom-paginate">
+				                  <p class="page-info"></p>
+				                  <ul class="pagination">
+				                    
+				                    <li th:each="pageNumber : ${pageNumbers}" th:if="${orderByUser.totalPages > 0}" class="page-item">
+				                      <a class="page-link"
+				                      		th:href="@{/profile(size=${orderByUser.size}, page=${pageNumber})}"
+				                      		th:class="${pageNumber==orderByUser.number + 1} ? 'page-link active'">
+				                      		[[${pageNumber}]]
+				                      </a>
+				                    </li>
+				                    
+				                  </ul>
+				                </div>
+				              </div>
+				            </div>
                           </div>
-                         
                         </div>
                       </div>
                     </div>
@@ -209,37 +212,38 @@
         </div>
     </section>
     
-    <!-- chỉnh sửa profile -->
-    <div class="modal fade" id="profile-edit">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <button class="modal-close" data-bs-dismiss="modal">
-            <i class="icofont-close"></i>
-          </button>
-          <form class="modal-form">
-            <div class="form-title"><h3>edit profile info</h3></div>
-            <div class="form-group">
-              <label class="form-label">profile image</label
-              ><input class="form-control" type="file" />
-            </div>
-            <div class="form-group">
-              <label class="form-label">name</label
-              ><input class="form-control" type="text" value="Miron Mahmud" />
-            </div>
-            <div class="form-group">
-              <label class="form-label">email</label
-              ><input
-                class="form-control"
-                type="text"
-                value="mironcoder@gmail.com"
-              />
-            </div>
-            <button class="form-btn" type="submit">save profile info</button>
-          </form>
-        </div>
-      </div>
-    </div>
-
+    <!-- Huỷ đơn hàng -->
+	<script>
+		function showConfigCancelModalDialog(id) {
+			$('#idCancel').text(id);
+			$('#yesOptionCanCel').attr('href', '/order/cancel/' + id);
+			$('#configmationCancelId').modal('show');
+		}
+	</script>
+	
+	<!-- Modal -->
+		<div class="modal" id="configmationCancelId">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<button class="modal-close" data-bs-dismiss="modal">
+		            	<i class="icofont-close"></i>
+		          	</button>
+					<div class="modal-form">
+						<h5 class="modal-title">Xác nhận</h5>
+						<div class="modal-body">
+						<p>
+							Bạn có muốn huỷ đơn hàng có mã " <span style="color: #119744" id="idCancel"></span> " không ?
+						</p>
+					</div>
+					<div class="modal-footer">
+						<a id="yesOptionCanCel" type="button" class="btn btn-success">Có</a>
+					</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+    
     <section class="news-part"
 		style="background: url(images/newsletter.jpg) no-repeat center">
 		<div class="container">

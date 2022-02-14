@@ -80,6 +80,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		 // remember-me
 		http.rememberMe()
 			.rememberMeParameter("remember");
+		
 	}
 
 }

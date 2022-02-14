@@ -24,6 +24,7 @@ import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
 
+import vn.fs.commom.CommomDataService;
 import vn.fs.config.PaypalPaymentIntent;
 import vn.fs.config.PaypalPaymentMethod;
 import vn.fs.entities.CartItem;
@@ -46,6 +47,9 @@ public class CartController extends CommomController {
 
 	@Autowired
 	HttpSession session;
+
+	@Autowired
+	CommomDataService commomDataService;
 
 	@Autowired
 	ShoppingCartService shoppingCartService;
@@ -80,21 +84,6 @@ public class CartController extends CommomController {
 		model.addAttribute("totalPrice", totalPrice);
 		model.addAttribute("totalCartItems", shoppingCartService.getCount());
 
-		return "web/shoppingCart_checkout";
-	}
-
-	@GetMapping(value = "/cartItem")
-	public String shoppingCart(Model model, HttpServletRequest request) {
-		Collection<CartItem> cartItems = shoppingCartService.getCartItems();
-		model.addAttribute("cartItems", cartItems);
-		model.addAttribute("total", shoppingCartService.getAmount());
-		double totalPrice = 0;
-		for (CartItem cartItem : cartItems) {
-			double price = cartItem.getQuantity() * cartItem.getProduct().getPrice();
-			totalPrice += price;
-		}
-		model.addAttribute("totalPrice", totalPrice);
-		model.addAttribute("totalCartItems", shoppingCartService.getCount());
 		return "web/shoppingCart_checkout";
 	}
 
@@ -137,12 +126,12 @@ public class CartController extends CommomController {
 			shoppingCartService.remove(item);
 		}
 		model.addAttribute("totalCartItems", shoppingCartService.getCount());
-		return "redirect:/shoppingCart_checkout";
+		return "redirect:/checkout";
 	}
 
 	// show check out
 	@GetMapping(value = "/checkout")
-	public String checkOut(Model model) {
+	public String checkOut(Model model, User user) {
 
 		Order order = new Order();
 		model.addAttribute("order", order);
@@ -159,6 +148,7 @@ public class CartController extends CommomController {
 
 		model.addAttribute("totalPrice", totalPrice);
 		model.addAttribute("totalCartItems", shoppingCartService.getCount());
+		commomDataService.commonData(model, user);
 
 		return "web/shoppingCart_checkout";
 	}
@@ -219,10 +209,10 @@ public class CartController extends CommomController {
 			orderDetailRepository.save(orderDetail);
 		}
 
-		/*
-		 * serviceCommon.sendSimpleEmail(customer.getEmail(),
-		 * "Book Store Xác Nhận Đơn hàng", "aaaa", cartItems, totalPrice, order);
-		 */
+		// sendMail
+		commomDataService.sendSimpleEmail(user.getEmail(), "Greeny-Shop Xác Nhận Đơn hàng", "aaaa", cartItems,
+				totalPrice, order);
+
 		shoppingCartService.clear();
 		session.removeAttribute("cartItems");
 		model.addAttribute("orderId", order.getOrderId());
@@ -230,16 +220,18 @@ public class CartController extends CommomController {
 		return "redirect:/checkout_success";
 	}
 
+	// paypal
 	@GetMapping(URL_PAYPAL_SUCCESS)
 	public String successPay(@RequestParam("" + "" + "") String paymentId, @RequestParam("PayerID") String payerId,
 			HttpServletRequest request, User user, Model model) throws MessagingException {
 		Collection<CartItem> cartItems = shoppingCartService.getCartItems();
 		model.addAttribute("cartItems", cartItems);
 		model.addAttribute("total", shoppingCartService.getAmount());
+
 		double totalPrice = 0;
 		for (CartItem cartItem : cartItems) {
 			double price = cartItem.getQuantity() * cartItem.getProduct().getPrice();
-			totalPrice += price;
+			totalPrice += price - (price * cartItem.getProduct().getDiscount() / 100);
 		}
 		model.addAttribute("totalPrice", totalPrice);
 		model.addAttribute("totalCartItems", shoppingCartService.getCount());
@@ -254,6 +246,7 @@ public class CartController extends CommomController {
 				orderFinal.setStatus(2);
 				orderFinal.getOrderId();
 				orderFinal.setUser(user);
+				orderFinal.setAmount(totalPrice);
 				orderRepository.save(orderFinal);
 
 				for (CartItem cartItem : cartItems) {
@@ -266,15 +259,15 @@ public class CartController extends CommomController {
 					orderDetailRepository.save(orderDetail);
 				}
 
-				/*
-				 * serviceCommon.sendSimpleEmail(customer.getEmail(),
-				 * "Book Store Xác Nhận Đơn hàng", "aaaa", cartItems, totalPrice, orderFinal);
-				 */
+				// sendMail
+				commomDataService.sendSimpleEmail(user.getEmail(), "Greeny-Shop Xác Nhận Đơn hàng", "aaaa", cartItems,
+						totalPrice, orderFinal);
+
 				shoppingCartService.clear();
 				session.removeAttribute("cartItems");
 				model.addAttribute("orderId", orderFinal.getOrderId());
 				orderFinal = new Order();
-				return "redirect:/shoppingCart_checkout";
+				return "redirect:/checkout_paypal_success";
 			}
 		} catch (PayPalRESTException e) {
 			log.error(e.getMessage());
@@ -282,9 +275,21 @@ public class CartController extends CommomController {
 		return "redirect:/";
 	}
 
+	// done checkout ship cod
 	@GetMapping(value = "/checkout_success")
-	public String success(Model model) {
+	public String checkoutSuccess(Model model, User user) {
+		commomDataService.commonData(model, user);
+
 		return "web/checkout_success";
+
+	}
+
+	// done checkout paypal
+	@GetMapping(value = "/checkout_paypal_success")
+	public String paypalSuccess(Model model, User user) {
+		commomDataService.commonData(model, user);
+
+		return "web/checkout_paypal_success";
 
 	}
 

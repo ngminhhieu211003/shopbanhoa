@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <meta
     http-equiv="content-type"
     content="text/html;charset=utf-8"
@@ -30,14 +30,6 @@
     <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css" />
     <link rel="stylesheet" href="css/main.css" />
   </head>
-  <style>
-
-
-
-.st-hiden {
-	display: none;
-}
-</style>
   <body>
   
   <!--************************************
@@ -101,20 +93,54 @@
                     <div class="product-label">
                       <label class="label-text sale">- [[${item.discount + '%'}]]</label>
                     </div>
-                    <button class="product-wish wish">
-                      <i class="fas fa-heart"></i>
-                    </button>
-                        <a class="product-image" href="product-video.html">
+                   
+                   		<th:block th:if="${user.email != null}">
+		                    <button class="product-wish" th:if="${item.favorite} == false">
+		                      <i class="fas fa-heart"></i>
+		                    </button>
+		                    
+		                    <button class="product-wish" th:if="${item.favorite} == true" style="color: #fd7e14">
+		                      <i class="fas fa-heart"></i>
+		                    </button>
+	                    
+	                    </th:block>
+	                    
+	                    <th:block th:if="${user.email == null}">
+		                    <button class="product-wish" >
+		                      <i class="fas fa-heart"></i>
+		                    </button>
+	                    </th:block>
+                   
+                        <a class="product-image" href="javascript:void(0);">
                             <img th:src="@{'/loadImage?imageName='+${item.productImage}}" alt="product"/>
                         </a>
                     <div class="product-widget">
-                      <a
-                        title="Yêu thích"
-                        href="compare.html"
-                        class="fas fa-heart">
-                        </a>
+                    
+                    	<th:block href="/login" th:if="${user.email == null}">
+	                      <a
+	                        title="Hãy đăng nhập"
+	                        th:href="@{/login}"
+	                        class="fas fa-heart">
+	                        </a>
+                        </th:block>
+                        
+                        <th:block th:if="${user.email != null}">
+	                      <a th:if="${item.favorite} == false"
+	                        title="Yêu thích"
+	                        th:href="@{/doFavorite(id=${item.productId})}"
+	                        class="fas fa-heart">
+	                        </a>
+                        
+	                      <a th:if="${item.favorite} == true"
+	                        title="Xóa Yêu thích"
+	                        th:href="@{/doUnFavorite(id=${item.productId})}"
+	                        style="background-color: #fd7e14"
+	                        class="fas fa-heart">
+	                        </a>
+                        </th:block>
+                        
                         <a
-                        title="Product Video"
+                        title="Video về sản phẩm"
                         href="https://youtu.be/9xzcVxSBbG8"
                         class="venobox fas fa-play"
                         data-autoplay="true"
@@ -129,15 +155,14 @@
                   </div>
                   <div class="product-content">
                     <div class="product-rating">
-                      <i class="active icofont-star"></i
-                      ><i class="active icofont-star"></i
-                      ><i class="active icofont-star"></i
-                      ><i class="active icofont-star"></i
-                      ><i class="icofont-star"></i
-                      ><a href="product-video.html">(3)</a>
+                      <i class="active icofont-star"></i>
+                      <i class="active icofont-star"></i>
+                      <i class="active icofont-star"></i>
+                      <i class="active icofont-star"></i>
+                      <i class="icofont-star"></i>
                     </div>
                     <h6 class="product-name">
-                      <a href="product-video.html">[[${item.productName}]]</a>
+                      <a href="javascript:void(0);">[[${item.productName}]]</a>
                     </h6>
                     <h6 class="product-price">
                       <del>[[${#numbers.formatDecimal(item.price, 1, 'DEFAULT', 0, 'DEFAULT')}+' đ']]</del>

@@ -9,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import vn.fs.entities.Role;
@@ -20,6 +21,9 @@ public class UserDetailService implements UserDetailsService {
 
 	@Autowired
 	UserRepository userRepository;
+
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

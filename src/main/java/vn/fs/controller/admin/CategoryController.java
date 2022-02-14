@@ -90,6 +90,7 @@ public class CategoryController {
 	@GetMapping("/delete/{id}")
 	public String delCategory(@PathVariable("id") Long id, Model model) {
 		categoryRepository.deleteById(id);
+		
 		model.addAttribute("message", "Delete successful!");
 
 		return "redirect:/admin/categories";

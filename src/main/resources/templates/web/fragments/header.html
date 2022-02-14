@@ -41,9 +41,9 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 				<div class="header-content">
 					<div class="header-media-group">
 						<button class="header-user">
-							<img src="images/user.png" alt="user" />
+							<img src="/images/user.png" alt="user" />
 						</button>
-						<a th:href="@{/}"> <img src="images/logo.png" alt="logo" />
+						<a th:href="@{/}"> <img src="/images/logo.png" alt="logo" />
 						</a>
 						<button class="header-src">
 							<i class="fas fa-search"></i>
@@ -51,12 +51,12 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 					</div>
 					
 					<a th:href="@{/}" class="header-logo">
-					<img src="images/logo.png" alt="logo" />
+					<img src="/images/logo.png" alt="logo" />
 					</a>
 				
 					<th:block th:if="${#request.remoteUser}">
 						<a href="javascript:void(0);" class="header-widget" title="Tên của bạn">
-							<img src="images/user.png" alt="user" />
+							<img src="/images/user.png" alt="user" />
 							<!-- thong tin user -->
 							<!-- <span sec:authentication="principal.username"></span> <br/> -->
 							<!-- <span th:object="${#request.userPrincipal}">
@@ -67,7 +67,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 					</th:block>
 					
 					<form th:action="@{/searchProduct}" class="header-form">
-						<input type="text" name="keyword" th:value="${keyword}" placeholder="Tìm kiếm..." />
+						<input type="text" name="keyword" th:value="${keyword}" placeholder="Tìm kiếm..." autocomplete="off" />
 						<button>
 							<i class="fas fa-search"></i>
 						</button>
@@ -80,12 +80,10 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 						</a>
 						</th:block>
 						<a th:href="@{/favorite}" class="header-widget" title="Yêu thích">
-							<i class="fas fa-heart"></i><sup>0</sup>
+							<i class="fas fa-heart"></i><sup th:text="${totalSave}" id="totalSave">0</sup>
 						</a>
 						<button class="header-widget header-cart" title="Giỏ hàng">
-							<i class="fas fa-shopping-basket"></i> <sup th:text="${totalCartItems}" id="totalCartItems"></sup>
-								<!-- <span>Tổng tiền<small>[[${#numbers.formatDecimal(totalPrice, 1, 'DEFAULT', 0, 'DEFAULT')}+ ' đ']]</small>
-							</span> -->
+							<i class="fas fa-shopping-basket"></i> <sup th:text="${totalCartItems}" id="totalCartItems">0</sup>
 						</button>
 					</div>
 				</div>
