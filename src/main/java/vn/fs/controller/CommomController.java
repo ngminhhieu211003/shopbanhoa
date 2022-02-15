@@ -26,7 +26,7 @@ public class CommomController {
 
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@Autowired
 	ProductRepository productRepository;
 
@@ -49,14 +49,5 @@ public class CommomController {
 
 		return categoryList;
 	}
-	
-	/*
-	 * // count product by category public void listCategoryByProductName(Model
-	 * model) {
-	 * 
-	 * List<Object[]> coutnProductByCategory =
-	 * productRepository.listCategoryByProductName();
-	 * model.addAttribute("coutnProductByCategory", coutnProductByCategory); }
-	 */
 
 }
