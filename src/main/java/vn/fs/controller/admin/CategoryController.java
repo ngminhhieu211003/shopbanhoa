@@ -20,16 +20,21 @@ import vn.fs.entities.User;
 import vn.fs.repository.CategoryRepository;
 import vn.fs.repository.UserRepository;
 
+
+/**
+ * @author DongTHD
+ *
+ */
 @Controller
 @RequestMapping("/admin")
 public class CategoryController {
 
 	@Autowired
 	CategoryRepository categoryRepository;
-	
+
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@ModelAttribute(value = "user")
 	public User user(Model model, Principal principal, User user) {
 
@@ -90,7 +95,7 @@ public class CategoryController {
 	@GetMapping("/delete/{id}")
 	public String delCategory(@PathVariable("id") Long id, Model model) {
 		categoryRepository.deleteById(id);
-		
+
 		model.addAttribute("message", "Delete successful!");
 
 		return "redirect:/admin/categories";

@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import vn.fs.entities.User;
 import vn.fs.repository.UserRepository;
 
+/**
+ * @author DongTHD
+ *
+ */
 @Controller
 public class UserController{
 

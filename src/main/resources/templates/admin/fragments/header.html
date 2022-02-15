@@ -143,15 +143,15 @@
 									<div class="user-box">
 										<div class="avatar-lg"><img src="/assets/img/05.png" alt="image profile" class="avatar-img rounded"></div>
 										<div class="u-text">
-											<h4>Hi : name</h4>
+											<h4>Hi : [[${user.name}]]</h4>
 											
 										</div>
 									</div>
 								</li>
 								<li>
-									<a class="dropdown-item" href="#">Administrator</a>
+									<a class="dropdown-item" href="javascript:void(0);">Administrator</a>
 									<div class="dropdown-divider"></div>
-									<a class="dropdown-item" th:href="@{/logout}">Logout</a>
+									<a class="dropdown-item" th:href="@{/logout}">Đăng xuất</a>
 								</li>
 							</div>
 						</ul>

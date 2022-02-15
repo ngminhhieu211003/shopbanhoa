@@ -5,6 +5,10 @@ import org.springframework.stereotype.Repository;
 
 import vn.fs.entities.User;
 
+/**
+ * @author DongTHD
+ *
+ */
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 

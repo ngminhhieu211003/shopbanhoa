@@ -46,7 +46,7 @@
 					<h4 class="page-title">Quản lý người dùng</h4>
 					<ul class="breadcrumbs">
 						<li class="nav-home">
-							<a href="#">
+							<a href="javascript:void(0);">
 								<i class="flaticon-home"></i>
 							</a>
 						</li>
@@ -54,13 +54,13 @@
 							<i class="flaticon-right-arrow"></i>
 						</li>
 						<li class="nav-item">
-							<a href="#">Trang chủ</a>
+							<a href="javascript:void(0);">Trang chủ</a>
 						</li>
 						<li class="separator">
 							<i class="flaticon-right-arrow"></i>
 						</li>
 						<li class="nav-item">
-							<a href="#">Quản lý người dùng</a>
+							<a href="javascript:void(0);">Quản lý người dùng</a>
 						</li>
 					</ul>
 				</div>
@@ -78,7 +78,6 @@
 									<table id="add-row" class="display table table-striped table-hover" >
 										<thead>
 											<tr>
-												<th>#</th>
 												<th>id</th>
 												<th>Ảnh đại diện</th>
 												<th>Họ và tên</th>
@@ -90,7 +89,6 @@
 										</thead>
 										<tfoot>
 											<tr>
-												<th>#</th>
 												<th>id</th>
 												<th>Ảnh đại diện</th>
 												<th>Họ và tên</th>
@@ -101,8 +99,7 @@
 											</tr>
 										</tfoot>
 										<tbody>
-											<tr th:each="item, iState : ${users}">
-												<td>[[${iState.index +1}]]</td>
+											<tr th:each="item : ${users}">
 												<td>[[${item.userId}]]</td>
 												<td>
 													<img th:src="@{'/loadImage?imageName='+${item.avatar}}"  alt="..." class="avatar-img rounded-circle" style="width: 60px">
@@ -113,7 +110,7 @@
 												<td>[[${item.status?'Đang hoạt động':'Ngừng hoạt động'}]]</td>
 												<td>
 													<div class="form-button-action">
-														<button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="details">
+														<button type="button" data-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Xem">
 															<i class="fa fa-eye"></i>
 														</button>
 													</div>
@@ -132,24 +129,24 @@
 				<nav class="pull-left">
 					<ul class="nav">
 						<li class="nav-item">
-							<a class="nav-link" href="#">
-								PAVSHOP
+							<a class="nav-link" href="javascript:void(0);">
+								GREENY-SHOP
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="javascript:void(0);">
 								Help
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="javascript:void(0);">
 								Licenses
 							</a>
 						</li>
 					</ul>
 				</nav>
 				<div class="copyright ml-auto">
-					2021, made with <i class="fa fa-heart heart text-danger"></i> by <a href="#">PAVSHOP</a>
+					2021, made with <i class="fa fa-heart heart text-danger"></i> by <a href="javascript:void(0);">GREENY-SHOP</a>
 				</div>				
 			</div>
 		</footer>

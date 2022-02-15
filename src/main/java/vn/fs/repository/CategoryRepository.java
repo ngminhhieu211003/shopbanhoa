@@ -5,6 +5,10 @@ import org.springframework.stereotype.Repository;
 
 import vn.fs.entities.Category;
 
+/**
+ * @author DongTHD
+ *
+ */
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 

@@ -8,6 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import vn.fs.entities.Order;
 
+/**
+ * @author DongTHD
+ *
+ */
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
 

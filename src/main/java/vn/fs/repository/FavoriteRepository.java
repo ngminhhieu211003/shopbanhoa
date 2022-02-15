@@ -8,6 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import vn.fs.entities.Favorite;
 
+/**
+ * @author DongTHD
+ *
+ */
 @Repository
 public interface FavoriteRepository extends JpaRepository<Favorite, Long> {
 

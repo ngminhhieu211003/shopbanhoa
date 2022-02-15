@@ -16,6 +16,10 @@ import vn.fs.entities.Role;
 import vn.fs.entities.User;
 import vn.fs.repository.UserRepository;
 
+/**
+ * @author DongTHD
+ *
+ */
 @Service
 public class UserDetailService implements UserDetailsService {
 
