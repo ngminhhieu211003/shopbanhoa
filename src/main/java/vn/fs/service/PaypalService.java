@@ -28,7 +28,6 @@ public class PaypalService {
 	@Autowired
 	private APIContext apiContext;
 	
-	
 	public Payment createPayment(
 			Double total,
 			String currency,
