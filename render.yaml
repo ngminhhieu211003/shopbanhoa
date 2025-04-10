@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: flower-shop
+    env: docker
+    plan: free  # hoặc đổi thành 'starter', 'standard' nếu bạn dùng gói trả phí
+    region: oregon  # hoặc frankfurt, singapore... tùy chọn khu vực gần bạn
+    branch: main  # nhánh Git bạn muốn Render tự động deploy
+    rootDir: .  # nếu Dockerfile nằm ở thư mục gốc
+    autoDeploy: true  # mỗi lần push là tự động deploy lại
