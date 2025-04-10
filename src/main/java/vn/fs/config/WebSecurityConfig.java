@@ -53,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		http.csrf().disable();
 		
 		// Admin page
-		http.authorizeRequests().antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')");
+		http.authorizeRequests().antMatchers("/admin/**","/admin/editProduct/**").access("hasRole('ROLE_ADMIN')");
 		
 		// If you are not logged in, you will be redirected to the /login page.
 		http.authorizeRequests().antMatchers("/checkout").access("hasRole('ROLE_USER')");

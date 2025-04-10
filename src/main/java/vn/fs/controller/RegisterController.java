@@ -60,7 +60,7 @@ public class RegisterController {
 		session.removeAttribute("otp");
 		int random_otp = (int) Math.floor(Math.random() * (999999 - 100000 + 1) + 100000);
 		session.setAttribute("otp", random_otp);
-		String body = "<div>\r\n" + "<h3>Mã xác thực OTP của bạn là: <span style=\"color:#119744; font-weight: bold;\">"
+		String body = "<div>\r\n" + "<h3>Mã xác thực OTP của bạn là: <span style=\"color:#dc3545; font-weight: bold;\">"
 				+ random_otp + "</span></h3>\r\n" + "</div>";
 		sendMailService.queue(dto.getEmail(), "Đăng kí tài khoản", body);
 

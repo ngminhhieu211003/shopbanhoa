@@ -16,7 +16,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 				<div class="row">
 					<div class="col-md-12 col-lg-5">
 						<div class="header-top-welcome">
-							<p>Chào mừng bạn đến với cửa hàng thực phẩm !</p>
+							<p>Chào mừng bạn đến với cửa hàng hoa tươi bốn mùa !</p>
 						</div>
 					</div>
 					<div class="col-md-5 col-lg-3">
@@ -147,7 +147,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 								<div class="navbar-info">
 									<i class="icofont-ui-email"></i>
 									<p>
-										<small>email</small><span>greenyshop123vn@gmail.com</span>
+										<small>email</small><span>hoatuoi4mua@gmail.com</span>
 									</p>
 								</div>
 							</div>
@@ -170,8 +170,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 			</div>
 			
 			<div th:unless="${totalCartItems!=0}" class="text-center">
-				<h4 style="color: #119744" class="mt-5">Hiện tại bạn chưa có sản phẩm nào trong giỏ hàng!</h4>
-				<h5 style="color: #119744">Hãy mua sắm đi nào!</h5>
+				<h4 style="color: #dc3545" class="mt-5">Hiện tại bạn chưa có sản phẩm nào trong giỏ hàng!</h4>
+				<h5 style="color: #dc3545">Hãy mua sắm đi nào!</h5>
 				<a th:href="@{/products}" style="text-decoration: underline;">Click tại đây!</a>
 			</div>
 			
@@ -187,7 +187,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 						<div class="cart-info">
 							<h6>
 								<label>Tên sản phẩm :</label>
-								<a th:href="@{/productDetail(id=${item.product.productId})}" style="color: #119744">[[${item.product.productName}]]</a>
+								<a th:href="@{/productDetail(id=${item.product.productId})}" style="color: #dc3545">[[${item.product.productName}]]</a>
 							</h6>
 							<label>Đơn giá :</label>
 							<p>[[${#numbers.formatDecimal(item.product.price - (item.product.price * item.product.discount/100), 1, 'DEFAULT', 0, 'DEFAULT')}+' đ']]</p>

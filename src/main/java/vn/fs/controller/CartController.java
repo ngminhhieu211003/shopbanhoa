@@ -38,10 +38,7 @@ import vn.fs.service.PaypalService;
 import vn.fs.service.ShoppingCartService;
 import vn.fs.util.Utils;
 
-/**
- * @author DongTHD
- *
- */
+
 @Controller
 public class CartController extends CommomController {
 

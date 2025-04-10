@@ -126,13 +126,22 @@ public class ProductController{
 	
 	// get Edit brand
 	@GetMapping(value = "/editProduct/{id}")
-	public String editCategory(@PathVariable("id") Long id, ModelMap model) {
+	public String editCategory(@PathVariable("id") Long id, ModelMap model, @ModelAttribute("product") Product updatedProduct) {
 		Product product = productRepository.findById(id).orElse(null);
-		
+
 		model.addAttribute("product", product);
 
 		return "admin/editProduct";
 	}
+//	@PostMapping("/editProduct/{id}")
+//	public String updateProduct(@PathVariable("id") Long id, @ModelAttribute("product") Product updatedProduct) {
+//		Product product = productRepository.findById(id).orElse(null);
+//
+//		product.setProductName(updatedProduct.getProductName());
+//		product.setPrice(updatedProduct.getPrice());
+//		productRepository.save(product);
+//		return "redirect:/admin/products";
+//	}
 
 	// delete category
 	@GetMapping("/deleteProduct/{id}")
@@ -142,6 +151,7 @@ public class ProductController{
 
 		return "redirect:/admin/products";
 	}
+
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {

@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta charset="UTF-8" />
-	<title>Greeny - Trang quản trị</title>
+	<title>CayXanh - Trang quản trị</title>
 	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 	<link rel="icon" href="/assets/img/icon.ico" type="image/x-icon"/>
 	
@@ -76,6 +76,11 @@
 						           <div class="col-9 offset-1">
 						             <form th:action="@{/admin/addProduct}" th:object="${product}" method="post" enctype="multipart/form-data">
 										<div class="row">
+											<div class="form-group">
+												<label for="categoryId">ID <a style="color: red"><strong>*</strong></a></label>
+												<input type="hidden">
+												<input type="text" th:field="*{productId}" class="form-control" name="productId" id="productId" aria-describedby="producthelpId" placeholder="Mã sản pẩm ?" readonly="readonly">
+											</div>
 											<div class="col-sm-12">
 												<div class="form-group form-group-default">
 													<label>Tên sản phẩm</label>
@@ -122,8 +127,10 @@
 											<div class="col-sm-12">
 												<div class="form-group form-group-default">
 													<label>Images</label>
-													<input type="file" id="productImage" name="file" class="form-control">
+
+													<input type="file"  id="productImage" name="file" class="form-control" accept="image/png,image/jpeg">
 												</div>
+
 											</div>
 											<div class="col-sm-12">
 												<div class="form-group form-group-default">
@@ -151,7 +158,7 @@
 					<ul class="nav">
 						<li class="nav-item">
 							<a class="nav-link" href="javascript:void(0);">
-								GREENY-SHOP
+								CayXanh
 							</a>
 						</li>
 						<li class="nav-item">
@@ -177,6 +184,77 @@
 	
 
 	</div>
+
+	<th:block layout:fragment="script">
+		<script type="text/javascript">
+			/*function getModels() {
+                var make = $(".make").val();
+                $.get( "../models?make=" + make, function( data ) {
+                    $(".model").empty();
+                    data.forEach(function(item, i) {
+                        var option = "<option value = " + item.id + ">" + item.name +  "</option>";
+                        $(".model").append(option);
+                    });
+                });
+            };
+            $(document).ready(function() {
+                $(".make").change(function() {
+                    getModels();
+                });
+            });*/
+
+			$(document).ready(function () {
+				// $("#buttonCancel").on("click", function () {
+				// 	window.location="[[@{/users}]]";
+				// })
+
+				$("#productImage").change(function () {
+					showImageThumbnail(this);
+				})
+			});
+
+			function showImageThumbnail(fileInput){
+				var file= fileInput.files[0];
+				var reader = new FileReader();
+
+				reader.onload = function (e) {
+					$("#thumbnail").attr("src", e.target.result);
+				};
+
+				reader.readAsDataURL(file);
+			}
+
+			// function  checkEmailUnique(form){
+			//     url = "[[@{/users/checl_email}]]";
+			//     userEmail=$("#email").val();
+			//     userId=$("#id").val();
+			//     csrfValue= $("input[name='_csrf']").val();
+			//     params= {id: userId, email: userEmail, _csrf: csrfValue};
+			//
+			//     $.post(url, params, function (response){
+			//         if (response == "OK"){
+			//             form.submit();
+			//         }else if (response == "Duplicated"){
+			//             showModalDialog("Thông báo","Thông tin email"+ " " + userEmail + " "+"đã tồn tại !");
+			//         }else {
+			//             showModalDialog("Thông báo","Lỗi 404");
+			//         }
+			//
+			//     }).fail(function (){
+			//         showModalDialog("Thông báo","Lỗi server");
+			//     });
+			//
+			//     return false;
+			//
+			// }
+			//
+			// function  showModalDialog(title, message){
+			//     $("#modalTitle").text(title);
+			//     $("#modalBody").text(message);
+			//     $("#modalDialog").modal();
+			// }
+		</script>
+	</th:block>
 	<!--   Core JS Files   -->
 	<script src="/assets/js/core/jquery.3.2.1.min.js"></script>
 	<script src="/assets/js/core/popper.min.js"></script>
